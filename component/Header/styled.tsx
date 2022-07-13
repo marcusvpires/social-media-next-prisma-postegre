@@ -1,13 +1,14 @@
-import styled, { keyframes } from 'styled-components'
+import styled, { keyframes } from 'styled-components';
 
 export const Wrapper = styled.section`
   width: 100vw;
   height: 4rem;
-  padding: .5rem 2rem;
+  padding: 0rem 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   box-shadow: 0 2px 5px var(--border);
+  z-index: 100;
 `;
 
 // Logo
@@ -45,27 +46,69 @@ export const Link = styled.a`
   color: var(--txt-1);
 `;
 
+// Dropdown
+
+export const ProfileDropdown = styled.div`
+  width: 18rem;
+  height: 0rem;
+  padding: 0;
+  position: absolute;
+  left: -10rem;
+  top: 3rem;
+  border-radius: 0 0 0 5px;
+  background-color: var(--bg-2);
+  overflow: hidden;
+  transition: 200ms;
+  z-index: 90;
+`;
+export const ProfileDropName = styled.div`
+  padding: 0.5rem 0;
+  text-align: center;
+`;
+export const ProfileDropEmail = styled.div`
+  padding: 0.5rem 0;
+  font-size: 0.8rem;
+  text-align: center;
+`;
+export const ProfileDropLogoutContainer = styled.div`
+  padding: 0.5rem 0.5rem;
+  display: flex;
+`;
+export const ProfileDropLogout = styled.div`
+  padding: 0.5rem;
+  flex-grow: 1;
+  border: 1px solid var(--txt-1);
+  text-align: center;
+  border-radius: 5px;
+`;
+
 // Profile
 
 export const Profile = styled.div`
+  height: 4rem;
+  position: relative;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   cursor: pointer;
-  `
+  &:hover ${ProfileDropdown} {
+    padding: 0.5rem;
+    padding-top: .5rem;
+    height: auto;
+  }
+`;
 export const Photo = styled.img`
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
-`
+`;
 export const Name = styled.div`
-  margin-right: .8rem;
-`
-
+  margin-right: 0.8rem;
+`;
 const spin = keyframes`
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
-`
-
+`;
 export const Loading = styled.div`
   border: 0.2em solid var(--bg-2);
   border-top: 0.2em solid var(--border);
@@ -73,4 +116,4 @@ export const Loading = styled.div`
   width: 1.8rem;
   height: 1.8rem;
   animation: ${spin} 0.6s linear infinite;
-`
+`;
