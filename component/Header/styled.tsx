@@ -15,14 +15,15 @@ export const Logo = styled.a`
   text-decoration: none;
   display: flex;
   align-items: center;
+  cursor: pointer;
 `;
 export const LogoIcon = styled.div`
   width: 1.8rem;
   height: 1.8rem;
   color: var(--primary);
-  `;
+`;
 export const LogoLabel = styled.div`
-  padding-left: .5rem;
+  padding-left: 0.5rem;
   font-size: large;
   font-weight: bold;
   color: var(--txt-2);
