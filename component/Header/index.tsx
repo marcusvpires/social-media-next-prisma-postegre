@@ -1,7 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
-import { headerLinks } from './content';
 import * as S from './styled';
+
+import { headerLinks } from './content';
 
 const Header: React.FC = () => (
   <S.Wrapper>
