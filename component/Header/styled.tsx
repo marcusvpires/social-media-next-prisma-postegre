@@ -8,6 +8,28 @@ export const Wrapper = styled.section`
   justify-content: space-between;
   box-shadow: 0 2px 5px var(--border);
 `;
+
+// Logo
+
+export const Logo = styled.a`
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+`;
+export const LogoIcon = styled.div`
+  width: 1.8rem;
+  height: 1.8rem;
+  color: var(--primary);
+  `;
+export const LogoLabel = styled.div`
+  padding-left: .5rem;
+  font-size: large;
+  font-weight: bold;
+  color: var(--txt-2);
+`;
+
+// Links
+
 export const LinksList = styled.ul`
   display: flex;
   align-items: center;
