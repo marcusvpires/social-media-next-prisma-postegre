@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
-import { signOut, useSession } from 'next-auth/react';
+import { signOut, signIn, useSession } from 'next-auth/react';
+
 import Link from 'next/link';
 import * as S from './styled';
 
@@ -26,11 +27,9 @@ const Profile: React.FC = () => {
     } else {
       return (
         <S.Profile>
-          <Link href='/api/auth/signin' passHref>
-            <S.Loguin>
-              <S.Button onClick={() => signOut()}>Entrar</S.Button>
-            </S.Loguin>
-          </Link>
+          <S.Loguin>
+            <S.Button onClick={() => signIn('google')}>Entrar</S.Button>
+          </S.Loguin>
         </S.Profile>
       );
     }

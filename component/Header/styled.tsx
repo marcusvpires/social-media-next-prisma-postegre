@@ -85,9 +85,9 @@ export const Profile = styled.div`
   justify-content: flex-end;
   cursor: pointer;
   &:hover ${ProfileDropdown} {
+    height: 8rem;
     padding: 0.5rem;
     padding-top: .5rem;
-    height: auto;
   }
 `;
 export const Photo = styled.img`
