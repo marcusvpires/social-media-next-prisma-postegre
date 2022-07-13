@@ -70,16 +70,9 @@ export const ProfileDropEmail = styled.div`
   font-size: 0.8rem;
   text-align: center;
 `;
-export const ProfileDropLogoutContainer = styled.div`
+export const ProfileDropLogout = styled.div`
   padding: 0.5rem 0.5rem;
   display: flex;
-`;
-export const ProfileDropLogout = styled.div`
-  padding: 0.5rem;
-  flex-grow: 1;
-  border: 1px solid var(--txt-1);
-  text-align: center;
-  border-radius: 5px;
 `;
 
 // Profile
@@ -117,3 +110,19 @@ export const Loading = styled.div`
   height: 1.8rem;
   animation: ${spin} 0.6s linear infinite;
 `;
+export const Button = styled.div`
+  padding: 0.5rem;
+  flex-grow: 1;
+  border: 1px solid var(--txt-1);
+  text-align: center;
+  border-radius: 5px;
+`;
+
+// Loguin
+
+export const Loguin = styled.a`
+  display: flex;
+  width: 8rem;
+  text-decoration: none;
+  color: var(--txt-1);
+`
