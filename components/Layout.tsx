@@ -9,7 +9,7 @@ const Layout: React.FC<Props> = (props) => (
   <div>
     <Header />
     <div className="layout">{props.children}</div>
-    <style  global>{`
+    <style >{`
       html {
         box-sizing: border-box;
       }

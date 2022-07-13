@@ -1,8 +1,9 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components'
 
 export const Wrapper = styled.section`
   width: 100vw;
-  padding: 1rem 2rem;
+  height: 4rem;
+  padding: .5rem 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -43,3 +44,33 @@ export const Link = styled.a`
   text-decoration: none;
   color: var(--txt-1);
 `;
+
+// Profile
+
+export const Profile = styled.div`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  `
+export const Photo = styled.img`
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+`
+export const Name = styled.div`
+  margin-right: .8rem;
+`
+
+const spin = keyframes`
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+`
+
+export const Loading = styled.div`
+  border: 0.2em solid var(--bg-2);
+  border-top: 0.2em solid var(--border);
+  border-radius: 50%;
+  width: 1.8rem;
+  height: 1.8rem;
+  animation: ${spin} 0.6s linear infinite;
+`

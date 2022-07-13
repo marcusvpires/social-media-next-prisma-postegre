@@ -90,7 +90,7 @@ const GlobalStyles = createGlobalStyle`
     --blue-l: #cce5ff;
     --blue: #0069d9;
     --blue-d: #004085;
-    --gray: #5a6268;
+    --gray: #99a3ab;
   }
 `;
 export default GlobalStyles;
