@@ -53,7 +53,7 @@ export const ProfileDropdown = styled.div`
   height: 0rem;
   padding: 0;
   position: absolute;
-  left: -10rem;
+  right: -2rem;
   top: 3rem;
   border-radius: 0 0 0 5px;
   background-color: var(--bg-2);
@@ -87,13 +87,15 @@ export const Profile = styled.div`
   &:hover ${ProfileDropdown} {
     height: 8rem;
     padding: 0.5rem;
-    padding-top: .5rem;
+    padding-top: 0.5rem;
   }
 `;
-export const Photo = styled.img`
+export const Photo = styled.div`
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
+  position: relative;
+  overflow: hidden;
 `;
 export const Name = styled.div`
   margin-right: 0.8rem;
@@ -125,4 +127,4 @@ export const Loguin = styled.a`
   width: 8rem;
   text-decoration: none;
   color: var(--txt-1);
-`
+`;
