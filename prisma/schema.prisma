@@ -16,6 +16,14 @@ model Post {
   authorId  String?
 }
 
+model Image {
+  id        String  @id @default(cuid())
+  scr       String
+  width     Int?
+  height    Int?
+  @@map("images")
+}
+
 model Account {
   id                 String  @id @default(cuid())
   userId             String  @map("user_id")

@@ -8,28 +8,10 @@
       "command": "npm run dev"
     },
     {
-      "name": "Next build",
-      "type": "node-terminal",
-      "request": "launch",
-      "command": "npm run build"
-    },
-    {
-      "name": "Prisma push",
-      "type": "node-terminal",
-      "request": "launch",
-      "command": "npx prisma db push"
-    },
-    {
-      "name": "Prisma generate",
-      "type": "node-terminal",
-      "request": "launch",
-      "command": "npx prisma generate"
-    },
-    {
       "name": "Prisma studio",
       "type": "node-terminal",
       "request": "launch",
       "command": "npx prisma studio"
-    },
+    }
   ]
 }

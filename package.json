@@ -9,7 +9,8 @@
     "ts-node": "ts-node --compiler-options '{\\\"module\\\":\\\"commonjs\\\"}'",
     "push": "npx prisma db push",
     "generate": "npx prisma generate",
-    "seed": "npx prisma db seed"
+    "seed": "npx prisma db seed",
+    "megrate": "npx prisma migrate dev --name init"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"

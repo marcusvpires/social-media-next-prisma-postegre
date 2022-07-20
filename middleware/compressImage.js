@@ -11,7 +11,7 @@ const compressImage = (file, callback = () => {}, maxWidth = 1000, maxHeight = 5
     image.src = blobURL;
     image.onload = () => {
       const resized = resizeMe(image, maxWidth, maxHeight);
-      callback(resized)
+      callback(resized);
     };
   };
 };
@@ -37,13 +37,13 @@ function resizeMe(img, maxWidth, maxHeight) {
   canvas.height = height;
   const ctx = canvas.getContext('2d');
   ctx.drawImage(img, 0, 0, width, height);
-  const base64 = canvas.toDataURL('image/jpeg', 0.8);
+  const scr = canvas.toDataURL('image/jpeg', 0.8);
   canvas.remove();
-  return ({
-    base64,
+  return {
+    scr,
     height,
-    width
-  });
+    width,
+  };
 }
 
 export default compressImage;

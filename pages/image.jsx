@@ -2,6 +2,20 @@ import React, { useState } from 'react';
 import Layout from '../component/Layout';
 import compressImage from '../middleware/compressImage';
 
+const uploadImage = async ({ scr, height, width }) => {
+  try {
+    const body = { scr, height, width };
+    const res = await fetch('/api/image/upload', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+    console.log("Response:", res)
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 const UploadImagePage = () => {
   const [file, setFile] = useState({ name: '' });
 
@@ -13,7 +27,8 @@ const UploadImagePage = () => {
   const handleSubmit = async () => {
     try {
       const callback = (image) => {
-        console.log(image)
+        console.log("Compress:", image)
+        uploadImage(image)
       }
       compressImage(file, callback)
     } catch (err) {
