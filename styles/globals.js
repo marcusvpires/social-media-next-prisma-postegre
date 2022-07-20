@@ -90,6 +90,7 @@ const GlobalStyles = createGlobalStyle`
     --blue-l: #cce5ff;
     --blue: #0069d9;
     --blue-d: #004085;
+    --gray-l: #8a8b95;
     --gray: #99a3ab;
   }
 `;

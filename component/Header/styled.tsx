@@ -49,18 +49,56 @@ export const Link = styled.a`
 // Dropdown
 
 export const ProfileDropdown = styled.div`
-  width: 18rem;
-  height: 0rem;
-  padding: 0;
+  max-height: ${(props: { drop: Boolean }) => (props.drop ? 'calc(100vh - 5rem)' : '0rem')};
+  width: 22rem;
+  padding: ${(props: { drop: Boolean }) => (props.drop ? ' 1.5rem' : '0rem')} 1rem;
   position: absolute;
-  right: -2rem;
-  top: 3rem;
-  border-radius: 0 0 0 5px;
-  background-color: var(--bg-2);
+  right: -1.5rem;
+  top: 5rem;
   overflow: hidden;
-  transition: 200ms;
+  border-radius: 5px;
+  border: ${(props: { drop: Boolean }) => (props.drop ? '1px solid var(--border)' : 'none')};
+  box-shadow: ${(props: { drop: Boolean }) => (props.drop ? '1px 1px 5px var(--border)' : 'none')};
+  background-color: var(--bg-2);
+  transition: max-height 400ms;
+  transition: padding 100ms;
   z-index: 90;
 `;
+
+export const ProfileDropPhoto = styled.div`
+  width: 4rem;
+  height: 4rem;
+  margin: 0 auto 0.5rem;
+  position: relative;
+`;
+export const ProfileDropImage = styled.div`
+  width: 4rem;
+  height: 4rem;
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+`;
+
+export const ProfileDropPhotoButton = styled.div`
+  position: absolute;
+  width: 1.5rem;
+  height: 1.5rem;
+  top: 2.4rem;
+  left: 2.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--border);
+  box-shadow: 1px 1px 5px var(--border);
+  background-color: var(--bg-2);
+  border-radius: 50%;
+  overflow: hidden;
+`;
+export const ProfileDropPhotoButtonContainer = styled.div`
+  width: 1rem;
+  height: 1rem;
+`;
+
 export const ProfileDropName = styled.div`
   padding: 0.5rem 0;
   text-align: center;
@@ -71,7 +109,8 @@ export const ProfileDropEmail = styled.div`
   text-align: center;
 `;
 export const ProfileDropLogout = styled.div`
-  padding: 0.5rem 0.5rem;
+  padding: 1rem 0.5rem 0.5rem;
+  margin: 0 1rem;
   display: flex;
 `;
 
@@ -84,11 +123,6 @@ export const Profile = styled.div`
   align-items: center;
   justify-content: flex-end;
   cursor: pointer;
-  &:hover ${ProfileDropdown} {
-    height: 8rem;
-    padding: 0.5rem;
-    padding-top: 0.5rem;
-  }
 `;
 export const Photo = styled.div`
   width: 2rem;
