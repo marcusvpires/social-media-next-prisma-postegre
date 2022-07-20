@@ -6,8 +6,6 @@ import * as S from './styled';
 
 const Profile: React.FC = () => {
   const { data: session, status } = useSession();
-
-  console.log(session, status);
   if (status === 'loading') return <S.Loading />;
   else {
     if (session) {
