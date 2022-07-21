@@ -3,13 +3,14 @@ import { GetStaticProps } from 'next';
 import prisma from '../lib/prisma';
 import Layout from '../component/Layout';
 import Post, { PostProps } from '../component/Post';
+import * as S from '../styles/pageStyles/feed';
 
 export const getStaticProps: GetStaticProps = async () => {
   const feed = await prisma.post.findMany({
     where: { published: true },
     include: {
       author: {
-        select: { name: true },
+        select: { name: true, image: true },
       },
     },
   });
@@ -25,9 +26,17 @@ type Props = {
 
 const FeedPage: React.FC<Props> = (props) => {
   console.log(props);
-  return <Layout>
-    { props.feed.map(post => <Post post={post} />) }
-  </Layout>;
+  return (
+    <Layout>
+      <S.Feed>
+        <S.Content>
+          {props.feed.map((post) => (
+            <Post key={post.id} post={post} />
+          ))}
+        </S.Content>
+      </S.Feed>
+    </Layout>
+  );
 };
 
 export default FeedPage;

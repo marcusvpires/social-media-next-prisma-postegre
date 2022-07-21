@@ -1,5 +1,7 @@
-import React from "react";
-import * as S from "./styled"
+import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import * as S from './styled';
 
 export type PostProps = {
   id: string;
@@ -7,21 +9,32 @@ export type PostProps = {
   author: {
     name: string;
     email: string;
+    image: string;
   } | null;
   content: string;
   published: boolean;
 };
 
-const Post: React.FC<{ post: PostProps }> = ({ post }) => (
+const Post: React.FC<{ post: PostProps }> = ({ post }) => {
+  let content = post.content
+  if (content.length > 250) {
+    content = content.slice(0, 250)
+  }
+  return (
   <S.Wrapper>
-    <S.Container>
-      <S.Container>id: {post.id}</S.Container>
-      <S.Container>title: {post.title}</S.Container>
-      <S.Container>author: {post.author.name}</S.Container>
-      <S.Container>content: {post.content}</S.Container>
-      <S.Container>published: {post.published}</S.Container>
-    </S.Container>
+    <Link href={`/post/${post.id}`} passHref >
+      <S.Container>
+        <S.Image>
+          <Image alt='Imagem de perfil' src="/defaurprofile.svg" layout='fill' />
+        </S.Image>
+        <S.Post>
+          <S.Title>{post.title}</S.Title>
+          <S.Author>{post.author.name}</S.Author>
+          <S.Content>{content}</S.Content>
+        </S.Post>
+      </S.Container>
+    </Link>
   </S.Wrapper>
-)
+)}
 
-export default Post
+export default Post;
