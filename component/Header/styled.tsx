@@ -122,7 +122,6 @@ export const Profile = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  cursor: pointer;
 `;
 export const Photo = styled.div`
   width: 2rem;
@@ -130,9 +129,7 @@ export const Photo = styled.div`
   border-radius: 50%;
   position: relative;
   overflow: hidden;
-`;
-export const Name = styled.div`
-  margin-right: 0.8rem;
+  cursor: pointer;
 `;
 const spin = keyframes`
     0% { transform: rotate(0deg); }
