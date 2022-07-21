@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { signOut } from 'next-auth/react';
 import Image from 'next/image';
 
-import UploadPhoto from './UploadPhoto';
-
+import Upload from "./Upload"
 import * as S from './styled';
 import { Camera } from '@styled-icons/boxicons-regular';
 
@@ -36,7 +35,7 @@ const Dropdown: React.FC<Props> = ({ drop, user }) => {
       <S.Logout>
         <S.Button onClick={() => signOut()}>Sair</S.Button>
       </S.Logout>
-      <UploadPhoto displayUpload={displayUpload} prevImage={{ src: user.image, email: user.email }} />
+      <Upload displayUpload={displayUpload} prevImage={user.image} email={user.email}/>
     </S.Wrapper>
 )}
 

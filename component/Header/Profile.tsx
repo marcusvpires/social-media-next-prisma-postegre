@@ -11,8 +11,6 @@ const Profile: React.FC = () => {
   if (status === 'loading') return <S.Loading />;
   else {
     if (session) {
-      console.log(session)
-      console.log(session.id)
       return (
         <S.Profile>
           <S.Photo onClick={handleDrop}>
