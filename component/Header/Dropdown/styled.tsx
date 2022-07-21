@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
   width: 22rem;
   padding: ${(props: { drop: Boolean }) => (props.drop ? ' 1.5rem' : '0rem')} 1rem;
   position: absolute;
+  overflow: hidden;
   right: -1.5rem;
   top: 5rem;
   border-radius: 5px;

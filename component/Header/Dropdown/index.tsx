@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { signOut } from 'next-auth/react';
 import Image from 'next/image';
 
-import Upload from "./Upload"
+import Upload from './Upload';
 import * as S from './styled';
 import { Camera } from '@styled-icons/boxicons-regular';
 
@@ -12,17 +12,19 @@ type Props = {
     name?: string;
     email?: string;
     image?: string;
-  }
+  };
 };
 
 const Dropdown: React.FC<Props> = ({ drop, user }) => {
-  const [ displayUpload, setDisplayUpload ] = useState(false)
-  const handleDisplayUpload = () => setDisplayUpload(!displayUpload)
+  const [displayUpload, setDisplayUpload] = useState(false);
+  const handleDisplayUpload = () => setDisplayUpload(!displayUpload);
   return (
     <S.Wrapper drop={drop}>
       <S.Photo drop={true}>
         <S.Image>
-          {user.image && <Image alt='The guitarist in the concert.' src={user.image} layout='fill' />}
+          {user.image && (
+            <Image alt='The guitarist in the concert.' src={user.image} layout='fill' />
+          )}
         </S.Image>
         <S.ChangePhoto onClick={handleDisplayUpload}>
           <S.ChangePhotoContainer>
@@ -35,8 +37,9 @@ const Dropdown: React.FC<Props> = ({ drop, user }) => {
       <S.Logout>
         <S.Button onClick={() => signOut()}>Sair</S.Button>
       </S.Logout>
-      <Upload displayUpload={displayUpload} prevImage={user.image} email={user.email}/>
+      {/* <Upload displayUpload={displayUpload} prevImage={user.image} email={user.email} /> */}
     </S.Wrapper>
-)}
+  );
+};
 
 export default Dropdown;
