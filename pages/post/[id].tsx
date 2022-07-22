@@ -1,8 +1,8 @@
 import React from 'react';
 import { GetServerSideProps } from 'next';
 import ReactMarkdown from 'react-markdown';
-import Layout from '../../component/Layout';
-import { PostProps } from '../../component/Post';
+import Layout from '../../components/Layout';
+import { PostProps } from '../../components/Post';
 import prisma from '../../lib/prisma';
 import * as S from '../../styles/pageStyles/postPage';
 

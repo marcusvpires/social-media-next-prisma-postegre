@@ -1,8 +1,8 @@
 import React from 'react';
 import { GetStaticProps } from 'next';
 import prisma from '../lib/prisma';
-import Layout from '../component/Layout';
-import Post, { PostProps } from '../component/Post';
+import Layout from '../components/Layout';
+import Post, { PostProps } from '../components/Post';
 import * as S from '../styles/pageStyles/feed';
 
 export const getStaticProps: GetStaticProps = async () => {
