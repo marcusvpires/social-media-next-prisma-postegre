@@ -220,6 +220,14 @@ export const Markdown = styled.div`
   code {
     background-color: #fafafa;
   }
+
+  strong {
+    font-weight: 600;
+  }
+
+  em {
+    font-style: italic;
+  }
 `;
 
 export default Markdown
