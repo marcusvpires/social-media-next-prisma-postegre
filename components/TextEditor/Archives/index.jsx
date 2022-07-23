@@ -1,7 +1,7 @@
 import { EditorContent, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import React from 'react';
-import Markdown from '../../styles/markdown';
+import Article from '../../styles/Artice'
 import Menubar from './Menubar'
 import * as S from './styled';
 
@@ -44,11 +44,11 @@ export default () => {
     <S.Wrapper>
       <S.Container>
           <Menubar editor={editor} />
-        <Markdown>
+        <Article>
           <S.TextEditor>
             <EditorContent editor={editor} />
           </S.TextEditor>
-        </Markdown>
+        </Article>
       </S.Container>
     </S.Wrapper>
   );
