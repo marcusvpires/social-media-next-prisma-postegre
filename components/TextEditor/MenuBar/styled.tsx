@@ -26,13 +26,19 @@ export const Button = styled.button`
 export const ButtonGroup = styled.div`
   padding: 0 0.5rem;
 `;
+
+// Heading
+
 export const Heading = styled.div`
   height: 2rem;
   width: 10rem;
   display: flex;
   align-items: center;
   position: relative;
-  `;
+  border: 1px solid var(--border);
+  box-sizing: border-box;
+  border-width: 0 1px 0 1px;
+`;
 export const Select = styled.div`
   height: 2rem;
   width: 10rem;
@@ -45,7 +51,7 @@ export const Dropdown = styled.div`
   height: ${props => props.display ? '12rem' : '0'};
   position: absolute;
   top: 2rem;
-  left: 0;
+  left: -1px;
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -53,7 +59,7 @@ export const Dropdown = styled.div`
   background-color: var(--bg-2);
   border: ${props => props.display ? '1px solid var(--border)' : 'none'};
   z-index: 1000;
-  transition: height 200ms;
+  transition: height 150ms;
   overflow: hidden;
 `;
 export const Option = styled.div`

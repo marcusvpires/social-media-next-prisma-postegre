@@ -1,30 +1,63 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, EventHandler } from 'react';
 import * as S from './styled';
 
-const Heading = (editor) => {
-  // const [selected, setSelected] = useState('paragraph');
+const Heading = ({ editor }) => {
+  const [selected, setSelected] = useState('paragraph');
   const [display, setDisplay] = useState<boolean>(false);
   const selectRef = useRef();
+  useEffect(() => {
+    if (editor.isActive('paragraph')) setSelected('Normal');
+    else if (editor.isActive('heading', { level: 1 })) setSelected('Título');
+    else if (editor.isActive('heading', { level: 2 })) setSelected('Subtítulo 1');
+    else if (editor.isActive('heading', { level: 3 })) setSelected('Subtítulo 2');
+  }, [editor])
   const handleDisplay = () => setDisplay(!display);
   return (
     <S.Heading>
       <S.Select onClick={handleDisplay} ref={selectRef}>
-        Normal
+        {selected}
       </S.Select>
-      <Dropdown editor={editor} display={display} setDisplay={setDisplay} selectRef={selectRef} />
+      <Dropdown
+        editor={editor}
+        display={display}
+        setDisplay={setDisplay}
+        selectRef={selectRef}
+        setSelected={setSelected}
+      />
     </S.Heading>
   );
 };
 
-const Dropdown = ({ editor, display, setDisplay, selectRef }) => {
+const Dropdown = ({ editor, display, setDisplay, selectRef, setSelected }) => {
   const ref = useRef();
   useOnClickOutside(ref, () => setDisplay(false), selectRef);
+  const handleClick = (value: string) => {
+    setSelected(value);
+    setDisplay(false);
+    switch (value) {
+      case 'Normal':
+        editor.chain().focus().setParagraph().run();
+        break;
+      case 'Título':
+        editor.chain().focus().toggleHeading({ level: 1 }).run();
+        break;
+      case 'Subtítulo 1':
+        editor.chain().focus().toggleHeading({ level: 2 }).run();
+        break;
+      case 'Subtítulo 2':
+        editor.chain().focus().toggleHeading({ level: 3 }).run();
+        break;
+      default:
+        editor.chain().focus().setParagraph().run();
+        break;
+    }
+  }
   return (
     <S.Dropdown display={display ? 1 : 0} ref={ref}>
-      <S.Option>Normal</S.Option>
-      <S.Option>Título 1</S.Option>
-      <S.Option>Título 2</S.Option>
-      <S.Option>Título 3</S.Option>
+      <S.Option onClick={() => handleClick('Normal')}>Normal</S.Option>
+      <S.Option onClick={() => handleClick('Título')}>Título</S.Option>
+      <S.Option onClick={() => handleClick('Subtítulo 1')}>Subtítulo 1</S.Option>
+      <S.Option onClick={() => handleClick('Subtítulo 2')}>Subtítulo 2</S.Option>
     </S.Dropdown>
   );
 };

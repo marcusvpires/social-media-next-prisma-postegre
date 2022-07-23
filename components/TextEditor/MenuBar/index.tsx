@@ -8,7 +8,7 @@ const MenuBar = ({ editor }) => {
   return (
     <S.MenuBar>
       <S.ButtonGroup>
-        <Heading />
+        <Heading editor={editor}/>
       </S.ButtonGroup>
       {Buttons(editor).map((group, index) => (
         <S.ButtonGroup key={index}>
