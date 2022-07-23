@@ -1,11 +1,15 @@
 import React from 'react';
 import Buttons from './Buttons';
+import Heading from './Heading';
 import * as S from './styled';
 
 const MenuBar = ({ editor }) => {
   if (!editor) return <S.MenuBar />;
   return (
     <S.MenuBar>
+      <S.ButtonGroup>
+        <Heading />
+      </S.ButtonGroup>
       {Buttons(editor).map((group, index) => (
         <S.ButtonGroup key={index}>
           {group.map((btn, index) => (
