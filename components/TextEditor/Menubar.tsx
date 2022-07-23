@@ -14,6 +14,10 @@ import {
   Redo,
   BookmarkAlt,
   SquareRounded,
+  AlignJustify,
+  AlignLeft,
+  AlignMiddle,
+  AlignRight
 } from '@styled-icons/boxicons-regular';
 
 const Select = ({ editor }) => {
@@ -128,6 +132,30 @@ const MenuBar = ({ editor }) => {
       </S.Button>
       <S.Button onClick={() => editor.chain().focus().redo().run()}>
         <Redo />
+      </S.Button>
+      <S.Button
+        onClick={() => editor.chain().focus().setTextAlign('left').run()}
+        isActive={editor.isActive({ textAlign: 'left' })}
+      >
+        <AlignLeft />
+      </S.Button>
+      <S.Button
+        onClick={() => editor.chain().focus().setTextAlign('center').run()}
+        isActive={editor.isActive({ textAlign: 'center' })}
+      >
+        <AlignMiddle />
+      </S.Button>
+      <S.Button
+        onClick={() => editor.chain().focus().setTextAlign('right').run()}
+        isActive={editor.isActive({ textAlign: 'right' })}
+      >
+        <AlignRight />
+      </S.Button>
+      <S.Button
+        onClick={() => editor.chain().focus().setTextAlign('justify').run()}
+        isActive={editor.isActive({ textAlign: 'justify' })}
+      >
+        <AlignJustify />
       </S.Button>
     </S.Menubar>
   );

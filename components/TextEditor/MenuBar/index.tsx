@@ -1,0 +1,22 @@
+import React from 'react';
+import Buttons from './Buttons';
+import * as S from './styled';
+
+const MenuBar = ({ editor }) => {
+  if (!editor) return <S.MenuBar />;
+  return (
+    <S.MenuBar>
+      {Buttons(editor).map((group, index) => (
+        <S.ButtonGroup key={index}>
+          {group.map((btn, index) => (
+            <S.Button key={index} onClick={btn.onClick} isActive={btn.isActive}>
+              {btn.Icon}
+            </S.Button>
+          ))}
+        </S.ButtonGroup>
+      ))}
+    </S.MenuBar>
+  );
+};
+
+export default MenuBar;

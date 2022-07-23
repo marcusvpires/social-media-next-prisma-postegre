@@ -208,7 +208,6 @@ const Markdown = styled.div`
     border-bottom: 2px solid #fafafa;
     margin-bottom: 1.15rem;
     padding-bottom: 0.5rem;
-    text-align: center;
   }
 
   blockquote {
@@ -219,6 +218,13 @@ const Markdown = styled.div`
   pre,
   code {
     background-color: #fafafa;
+  }
+  strong {
+    font-weight: 600;
+  }
+
+  em {
+    font-style: italic;
   }
 `;
 

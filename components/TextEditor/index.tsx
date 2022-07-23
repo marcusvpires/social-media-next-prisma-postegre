@@ -1,20 +1,21 @@
 import React from 'react';
 import { EditorContent, useEditor } from '@tiptap/react';
-import StarterKit from '@tiptap/starter-kit';
 import Markdown from '../../styles/Mardown';
-import Menubar from './Menubar';
+import MenuBar from './MenuBar/index';
+import { Teste } from './initialContent';
+import Options from './Options';
 import * as S from './styled';
 
 export default () => {
   const editor = useEditor({
-    extensions: [StarterKit],
-    content: ``,
+    extensions: Options,
+    content: Teste,
   });
 
   return (
     <S.Wrapper>
       <Markdown>
-        <Menubar editor={editor} />
+        <MenuBar editor={editor} />
         <S.Content>
           <S.TextEditor>
             <EditorContent editor={editor} />
