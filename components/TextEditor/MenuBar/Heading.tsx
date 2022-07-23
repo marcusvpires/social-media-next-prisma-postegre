@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, EventHandler } from 'react';
 import * as S from './styled';
+import { DownArrow } from '@styled-icons/boxicons-regular';
 
 const Heading = ({ editor }) => {
   const [selected, setSelected] = useState('paragraph');
@@ -10,12 +11,15 @@ const Heading = ({ editor }) => {
     else if (editor.isActive('heading', { level: 1 })) setSelected('Título');
     else if (editor.isActive('heading', { level: 2 })) setSelected('Subtítulo 1');
     else if (editor.isActive('heading', { level: 3 })) setSelected('Subtítulo 2');
-  }, [editor])
+  }, [editor]);
   const handleDisplay = () => setDisplay(!display);
   return (
     <S.Heading>
       <S.Select onClick={handleDisplay} ref={selectRef}>
         {selected}
+        <S.SelectIcon display={display}>
+          <DownArrow />
+        </S.SelectIcon>
       </S.Select>
       <Dropdown
         editor={editor}
@@ -51,7 +55,7 @@ const Dropdown = ({ editor, display, setDisplay, selectRef, setSelected }) => {
         editor.chain().focus().setParagraph().run();
         break;
     }
-  }
+  };
   return (
     <S.Dropdown display={display ? 1 : 0} ref={ref}>
       <S.Option onClick={() => handleClick('Normal')}>Normal</S.Option>

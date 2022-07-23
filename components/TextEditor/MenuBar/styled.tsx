@@ -43,8 +43,19 @@ export const Select = styled.div`
   height: 2rem;
   width: 10rem;
   padding: 0 1rem;
+  position: relative;
   line-height: 2rem;
   cursor: pointer;
+`;
+export const SelectIcon = styled.div`
+  height: 2rem;
+  width: 1rem;
+  position: absolute;
+  right: .5rem;
+  top: 0;
+  color: var(--txt-2);
+  transform: ${props => props.display ? 'rotate(180deg)' : '0'};
+  transition: 200ms;
 `;
 export const Dropdown = styled.div`
   width: 10rem;

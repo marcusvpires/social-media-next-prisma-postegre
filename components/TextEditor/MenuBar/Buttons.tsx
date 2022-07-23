@@ -15,6 +15,11 @@ const Buttons = (editor): ButtonType[][] => [
       isActive: editor.isActive('bold'),
     },
     {
+      Icon: <I.Italic />,
+      onClick: () => editor.chain().focus().toggleItalic().run(),
+      isActive: editor.isActive('italic'),
+    },
+    {
       Icon: <I.Strikethrough />,
       onClick: () => editor.chain().focus().toggleStrike().run(),
       isActive: editor.isActive('strike'),
