@@ -11,7 +11,6 @@ export default () => {
     extensions: Options,
     content: Teste,
   });
-
   return (
     <S.Wrapper>
       <Markdown>

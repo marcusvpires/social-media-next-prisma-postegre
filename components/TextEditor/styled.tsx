@@ -23,6 +23,9 @@ export const TextEditor = styled.div`
     outline: none !important;
   }
 `;
+export const Title = styled.input`
+  
+`
 
 // Menubar
 
