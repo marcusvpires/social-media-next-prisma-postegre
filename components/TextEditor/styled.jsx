@@ -11,13 +11,15 @@ export const Wrapper = styled.section`
 export const Content = styled.div`
   height: calc(100vh - 6rem);
   width: 100vw;
-  padding: 2rem;
+  padding: 1rem;
   overflow: auto;
 `;
 export const TextEditor = styled.div`
   max-width: 50rem;
   margin: 0 auto;
   .ProseMirror {
+    padding: 1rem;
+    min-height: calc(100vh - 8rem);
     outline: none !important;
   }
 `;
@@ -27,9 +29,9 @@ export const TextEditor = styled.div`
 export const Menubar = styled.div`
   height: 2rem;
   width: 100vw;
-  padding: 0 4rem;
   outline: 1px solid var(--border);
   display: flex;
+  justify-content: center;
   background-color: var(--bg-2);
 `;
 export const Button = styled.button`
@@ -39,9 +41,22 @@ export const Button = styled.button`
   position: relative;
   color: var(--txt-2);
   transition: background-color 200ms;
-  background-color: ${props => props.isActive && 'var(--bg-3)'};
+  background-color: ${(props) => props.isActive && 'var(--bg-3)'};
+  border: none;
   cursor: pointer;
   &:hover {
     background-color: var(--bg-3);
   }
 `;
+export const Select = styled.select`
+  padding: 0 0.5rem;
+  background-color: var(--bg-2);
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+  outline: none;
+  cursor: pointer;
+`;
+export const Option = styled.option``;

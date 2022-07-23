@@ -5,23 +5,22 @@ import Markdown from '../../styles/Mardown';
 import Menubar from './Menubar';
 import * as S from './styled';
 
-const TextEditor = () => {
+export default () => {
   const editor = useEditor({
     extensions: [StarterKit],
-    content: `Hello`,
+    content: ``,
   });
+
   return (
     <S.Wrapper>
-      <Menubar editor={editor} />
-      <S.Content>
-        <S.TextEditor>
-          <Markdown>
+      <Markdown>
+        <Menubar editor={editor} />
+        <S.Content>
+          <S.TextEditor>
             <EditorContent editor={editor} />
-          </Markdown>
-        </S.TextEditor>
-      </S.Content>
+          </S.TextEditor>
+        </S.Content>
+      </Markdown>
     </S.Wrapper>
   );
 };
-
-export default TextEditor;

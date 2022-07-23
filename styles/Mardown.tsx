@@ -1,13 +1,196 @@
 import styled from 'styled-components';
 
 const Markdown = styled.div`
-  > * + * {
-    margin-top: 0.75em;
+  @media print {
+    *,
+    *:before,
+    *:after {
+      background: transparent !important;
+      color: #000 !important;
+      box-shadow: none !important;
+      text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+      text-decoration: underline;
+    }
+
+    a[href]:after {
+      content: ' (' attr(href) ')';
+    }
+
+    abbr[title]:after {
+      content: ' (' attr(title) ')';
+    }
+
+    a[href^='#']:after,
+    a[href^='javascript:']:after {
+      content: '';
+    }
+
+    pre,
+    blockquote {
+      border: 1px solid #999;
+      page-break-inside: avoid;
+    }
+
+    thead {
+      display: table-header-group;
+    }
+
+    tr,
+    img {
+      page-break-inside: avoid;
+    }
+
+    img {
+      max-width: 100% !important;
+    }
+
+    p,
+    h2,
+    h3 {
+      orphans: 3;
+      widows: 3;
+    }
+
+    h2,
+    h3 {
+      page-break-after: avoid;
+    }
   }
 
-  ul,
-  ol {
-    padding: 0 1rem;
+  pre,
+  code {
+    font-family: Menlo, Monaco, 'Courier New', monospace;
+  }
+
+  pre {
+    padding: 0.5rem;
+    line-height: 1.25;
+    overflow-x: scroll;
+  }
+
+  a,
+  a:visited {
+    color: #3498db;
+  }
+
+  a:hover,
+  a:focus,
+  a:active {
+    color: #2980b9;
+  }
+
+  .modest-no-decoration {
+    text-decoration: none;
+  }
+
+  html {
+    font-size: 12px;
+  }
+
+  @media screen and (min-width: 32rem) and (max-width: 48rem) {
+    html {
+      font-size: 15px;
+    }
+  }
+
+  @media screen and (min-width: 48rem) {
+    html {
+      font-size: 16px;
+    }
+  }
+
+  body {
+    line-height: 1.85;
+  }
+
+  p,
+  .modest-p {
+    font-size: 1rem;
+    margin-bottom: 1.3rem;
+  }
+
+  h1,
+  .modest-h1,
+  h2,
+  .modest-h2,
+  h3,
+  .modest-h3,
+  h4,
+  .modest-h4 {
+    margin: 1.414rem 0 0.5rem;
+    font-weight: inherit;
+    line-height: 1.42;
+  }
+
+  h1,
+  .modest-h1 {
+    margin-top: 0;
+    font-size: 3.998rem;
+  }
+
+  h2,
+  .modest-h2 {
+    font-size: 2.827rem;
+  }
+
+  h3,
+  .modest-h3 {
+    font-size: 1.999rem;
+  }
+
+  h4,
+  .modest-h4 {
+    font-size: 1.414rem;
+  }
+
+  h5,
+  .modest-h5 {
+    font-size: 1.121rem;
+  }
+
+  h6,
+  .modest-h6 {
+    font-size: 0.88rem;
+  }
+
+  small,
+  .modest-small {
+    font-size: 0.707em;
+  }
+
+  /* https://github.com/mrmrs/fluidity */
+
+  img,
+  canvas,
+  iframe,
+  video,
+  svg,
+  select,
+  textarea {
+    max-width: 100%;
+  }
+
+  @import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700);
+
+  @import url(http://fonts.googleapis.com/css?family=Arimo:700,700italic);
+
+  html {
+    font-size: 18px;
+    max-width: 100%;
+  }
+
+  body {
+    color: #444;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-weight: 300;
+    margin: 0 auto;
+    max-width: 48rem;
+    line-height: 1.45;
+    padding: 0.25rem;
   }
 
   h1,
@@ -16,51 +199,26 @@ const Markdown = styled.div`
   h4,
   h5,
   h6 {
-    line-height: 1.1;
+    font-family: Arimo, Helvetica, sans-serif;
   }
 
-  code {
-    background-color: rgba(#616161, 0.1);
-    color: #616161;
-  }
-
-  pre {
-    background: #0d0d0d;
-    color: #fff;
-    font-family: 'JetBrainsMono', monospace;
-    padding: 0.75rem 1rem;
-    border-radius: 0.5rem;
-
-    code {
-      color: inherit;
-      padding: 0;
-      background: none;
-      font-size: 0.8rem;
-    }
-  }
-
-  img {
-    max-width: 100%;
-    height: auto;
+  h1,
+  h2,
+  h3 {
+    border-bottom: 2px solid #fafafa;
+    margin-bottom: 1.15rem;
+    padding-bottom: 0.5rem;
+    text-align: center;
   }
 
   blockquote {
-    padding-left: 1rem;
-    border-left: 2px solid rgba(#0d0d0d, 0.1);
+    border-left: 8px solid #fafafa;
+    padding: 1rem;
   }
 
-  hr {
-    border: none;
-    border-top: 2px solid rgba(#0d0d0d, 0.1);
-    margin: 2rem 0;
-  }
-
-  strong {
-    font-weight: bold;
-  }
-
-  em {
-    font-style: italic;
+  pre,
+  code {
+    background-color: #fafafa;
   }
 `;
 
