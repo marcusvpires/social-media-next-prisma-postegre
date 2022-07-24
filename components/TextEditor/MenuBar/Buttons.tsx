@@ -1,4 +1,5 @@
 import React from 'react';
+import create from '../../../db/controller/post/create';
 import * as I from '@styled-icons/boxicons-regular';
 
 type ButtonType = {
@@ -7,7 +8,7 @@ type ButtonType = {
   isActive?: boolean;
 };
 
-const Buttons = (editor): ButtonType[][] => [
+const Buttons = (editor, title): ButtonType[][] => [
   [
     {
       Icon: <I.Bold />,
@@ -97,6 +98,12 @@ const Buttons = (editor): ButtonType[][] => [
       onClick: () => editor.chain().focus().redo().run(),
     },
   ],
+  [
+    {
+      Icon: <I.Save />,
+      onClick: () => create(editor, title)
+    }
+  ]
 ];
 
 export default Buttons;

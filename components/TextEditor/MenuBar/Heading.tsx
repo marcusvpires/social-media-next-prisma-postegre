@@ -17,7 +17,7 @@ const Heading = ({ editor }) => {
     <S.Heading>
       <S.Select onClick={handleDisplay} ref={selectRef}>
         {selected}
-        <S.SelectIcon display={display}>
+        <S.SelectIcon display={display ? 1 : 0}>
           <DownArrow />
         </S.SelectIcon>
       </S.Select>

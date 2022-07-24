@@ -9,10 +9,30 @@ export const Wrapper = styled.section`
   align-items: center;
 `;
 export const Content = styled.div`
-  height: calc(100vh - 6rem);
+  height: calc(100vh - 6rem - (1ex / 0.42));
   width: 100vw;
   padding: 1rem;
   overflow: auto;
+`;
+export const TitleContainer = styled.div`
+  padding: 0 1rem;
+  display: inline-block;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+export const Title = styled.input`
+  border: none;
+  border-bottom: 2px solid var(--border);
+  background-color: var(--bg-2);
+  font-size: 2.5em;
+  line-height: calc(1ex / 0.42);
+  font-weight: bold;
+  padding: 1rem 0;
+  display: inline-block;
+  width: 100%;
+  margin-top: 2rem;
+  max-width: 48rem;
 `;
 export const TextEditor = styled.div`
   max-width: 50rem;
@@ -23,9 +43,6 @@ export const TextEditor = styled.div`
     outline: none !important;
   }
 `;
-export const Title = styled.input`
-  
-`
 
 // Menubar
 
