@@ -5,7 +5,7 @@ import * as S from "./styled"
 const content = [
   {
     label: 'Dashbord',
-    href: '/dashbord/dashbord'
+    href: '/dashbord'
   },
   {
     label: 'Publicados',

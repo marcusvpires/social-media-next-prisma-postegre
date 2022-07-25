@@ -1,5 +1,5 @@
 import { PrismaClient, Prisma } from '@prisma/client';
-import { users } from '../db/seed/profilesAndPosts';
+import { users } from '../db/seed/medium';
 const prisma = new PrismaClient();
 const userData: Prisma.UserCreateInput[] = users;
 

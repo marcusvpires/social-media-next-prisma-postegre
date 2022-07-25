@@ -3,17 +3,18 @@ import { GetServerSideProps } from 'next';
 import { getSession } from 'next-auth/react';
 import prisma from '../../lib/prisma';
 import DashbordLayout from '../../components/DashbordLayout';
-import Post, { PostProps } from '../../components/Post';
+import PostADM from '../../components/DashbordLayout/PostADM';
+import { PostProps } from '../../components/Post';
 import * as S from '../../styles/pageStyles/dashbord';
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const session = await getSession({ req });
   if (!session) {
     res.statusCode = 403;
-    return { props: { draft: [] } };
+    return { props: { posts: [] } };
   }
 
-  const draft = await prisma.post.findMany({
+  const posts = await prisma.post.findMany({
     where: {
       author: { email: session.user.email },
     },
@@ -24,22 +25,22 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
     },
   });
   return {
-    props: { draft },
+    props: { posts },
   };
 };
 
 type Props = {
-  draft: PostProps[];
+  posts: PostProps[];
 };
 
-
 const Dashbord: React.FC<Props> = (props) => {
+  console.log(props.posts);
   return (
     <DashbordLayout>
       <S.Feed>
         <S.Content>
-          {props.draft.map((post) => (
-            <Post key={post.id} post={post} />
+          {props.posts.map((post) => (
+            <PostADM key={post.id} post={post} />
           ))}
         </S.Content>
       </S.Feed>
