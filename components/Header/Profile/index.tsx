@@ -1,23 +1,16 @@
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 import { signIn, useSession } from 'next-auth/react';
 import Image from 'next/image';
-import Dropdown from './Dropdown'
+import Profile from './Profile';
 import * as S from './styled';
 
-const Profile: React.FC = () => {
-  const [drop, setDrop] = useState(false);
-  const handleDrop = () => setDrop(!drop);
+const Session: React.FC = () => {
   const { data: session, status } = useSession();
   if (status === 'loading') return <S.Loading />;
   else {
     if (session) {
       return (
-        <S.Profile>
-          <S.Photo onClick={handleDrop}>
-            <Image alt='The guitarist in the concert.' src={session.user.image} layout='fill' />
-          </S.Photo>
-          <Dropdown drop={drop} user={session.user} />
-        </S.Profile>
+        <S.Profile><Profile user={session.user}/></S.Profile>
       );
     } else {
       return (
@@ -31,4 +24,4 @@ const Profile: React.FC = () => {
   }
 };
 
-export default Profile;
+export default Session;

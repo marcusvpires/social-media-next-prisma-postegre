@@ -76,6 +76,7 @@ const GlobalStyles = createGlobalStyle`
     --txt-o: #ffffff;
     --txt-3: #9c9fa6;
     --border: #ced4da;
+    --holver: #c8ccdd80;
     --primary-l: #53a3f9;
     --primary: #007bff;
     --red-l: #f8d7da;
