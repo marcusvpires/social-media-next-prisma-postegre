@@ -2,11 +2,11 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.section`
   margin: 0.5rem;
-  padding: 0.8rem;
+  padding: 0.5rem;
   border: 1px solid var(--border);
   background-color: var(--bg-1);
   border-radius: 5px;
-  position: relative;
+  display: flex;
 `;
 export const Container = styled.a`
   text-decoration: none;
@@ -15,10 +15,11 @@ export const Container = styled.a`
   align-items: center;
   letter-spacing: 0.2px;
   margin-left: 0.5rem;
+  cursor: pointer;
 `;
 export const Image = styled.div`
-  height: 4em;
-  width: 4rem;
+  height: 3em;
+  width: 3rem;
   position: relative;
   background-color: white;
   flex-shrink: 0;
@@ -41,15 +42,15 @@ export const Content = styled.div`
   text-overflow: ellipsis;
 `;
 export const Buttons = styled.div`
-  position: absolute;
-  right: 1rem;
-  top: 1rem;
   display: flex;
+  height: auto;
+  align-items: center;
+
 `;
 export const Button = styled.div`
   height: 1.2rem;
   width: 1.2rem;
-  margin-left: 0.3rem;
-  color: ${(props: { color?: string }) => (props.color ? props.color : 'var(--txt-2)')};
+  margin: 0.5rem;
+  color: ${(props: { color?: string }) => (props.color ? props.color : 'var(--txt-1)')};
   cursor: pointer;
 `;

@@ -17,27 +17,34 @@ export type PostProps = {
 };
 
 const PostADM: React.FC<{ post: PostProps }> = ({ post }) => {
-  let content = post.content
+  let content = post.content;
   if (content.length > 250) {
-    content = content.slice(0, 250)
+    content = content.slice(0, 250);
   }
   return (
-  <S.Wrapper>
-      <S.Container>
-        <S.Image>
-          <Image alt='Imagem de perfil' src="/defaurprofile.svg" layout='fill' />
-        </S.Image>
-        <S.Post>
-          <S.Title>{post.title}</S.Title>
-          <S.Content>{content}</S.Content>
-        </S.Post>
-      </S.Container>
+    <S.Wrapper>
+      <Link href={`/post/${post.id}`}>
+        <S.Container>
+          <S.Image>
+            <Image alt='Imagem de perfil' src='/defaurprofile.svg' layout='fill' />
+          </S.Image>
+          <S.Post>
+            <S.Title>{post.title}</S.Title>
+            <S.Content>{content}</S.Content>
+          </S.Post>
+        </S.Container>
+      </Link>
       <S.Buttons>
-        <S.Button><Edit /></S.Button>
-        <S.Button color='var(--blue-d)'><PaperPlane /></S.Button>
-        <S.Button color='var(--red-d)'><Trash /></S.Button>
+        <S.Button color='var(--blue-d)'>{!post.published && <PaperPlane />}</S.Button>
+        <S.Button>
+          <Edit />
+        </S.Button>
+        <S.Button color='var(--red-d)'>
+          <Trash />
+        </S.Button>
       </S.Buttons>
-  </S.Wrapper>
-)}
+    </S.Wrapper>
+  );
+};
 
 export default PostADM;
