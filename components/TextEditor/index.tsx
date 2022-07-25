@@ -22,7 +22,7 @@ export default () => {
         <MenuBar editor={editor} title={title} />
         <S.Content>
           <S.TitleContainer>
-            <S.Title value={title} onChange={handleTitle} placeholder='Título' />
+            <S.Title value={title} onChange={handleTitle} placeholder='Escreva o tpitulo aqui' />
           </S.TitleContainer>
           <S.TextEditor>
             <EditorContent editor={editor} />

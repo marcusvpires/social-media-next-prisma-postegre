@@ -1,34 +1,44 @@
 import styled from 'styled-components';
 
 const Markdown = styled.div`
+  color: var(--txt-1);
+
   h1 {
-    font-size: 2.5em;
+    font-size: 1.75rem;
     line-height: calc(1ex / 0.42);
     margin: calc(1ex / 0.42) 0;
-    font-weight: bold;
+    font-weight: 700;
   }
 
   h2 {
-    font-size: 2em;
+    font-size: 1.5rem;
     line-height: calc(1ex / 0.42);
     margin: calc(1ex / 0.42) 0;
-    font-weight: 600;
+    font-weight: 700;
   }
 
   h3 {
-    font-size: 1.75em;
+    font-size: 1.25rem;
     line-height: calc(1ex / 0.38);
     margin: calc(1ex / 0.38) 0;
+    font-weight: 700;
   }
 
   h4 {
-    font-size: 1.5em;
+    font-size: 1rem;
     line-height: calc(1ex / 0.37);
     margin: calc(1ex / 0.37) 0;
+    font-weight: 700;
+  }
+  h5 {
+    font-size: 0.875rem;
+    line-height: calc(1ex / 0.37);
+    margin: calc(1ex / 0.37) 0;
+    font-weight: 700;
   }
 
   p {
-    font-size: 1em;
+    font-size: 1.125rem;
     line-height: calc(1ex / 0.32);
     margin: calc(1ex / 0.32) 0;
   }
@@ -37,7 +47,7 @@ const Markdown = styled.div`
     list-style: disc;
     margin-left: 2em;
   }
-  
+
   ol {
     list-style: number;
     margin-left: 2em;
@@ -73,19 +83,17 @@ const Markdown = styled.div`
   }
 
   blockquote {
-    padding: .8em 0 .8em 1em;
+    padding: 0.8em 0 0.8em 1em;
     margin: 2em 0;
     border-left: 8px solid var(--border);
     font-size: 1.2em;
     line-height: calc(1ex / 0.34);
     margin: calc(1ex / 0.34) 0;
   }
-  
+
   blockquote p {
     margin: 0;
   }
-
-
 `;
 
 export default Markdown;

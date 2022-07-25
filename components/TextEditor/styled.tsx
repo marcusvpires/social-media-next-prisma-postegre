@@ -28,14 +28,14 @@ export const Title = styled.input`
   font-size: 2.5em;
   line-height: calc(1ex / 0.42);
   font-weight: bold;
-  padding: 1rem 0;
+  padding: 1rem;
   display: inline-block;
   width: 100%;
   margin-top: 2rem;
-  max-width: 48rem;
+  max-width: 44rem;
 `;
 export const TextEditor = styled.div`
-  max-width: 50rem;
+  max-width: 44rem;
   margin: 0 auto;
   .ProseMirror {
     padding: 1rem;

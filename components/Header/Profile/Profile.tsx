@@ -22,7 +22,7 @@ const Profile: React.FC<Props> = ({ user }) => {
       <S.Photo onClick={handleDisplay} ref={togglerRef}>
         <Image alt='The guitarist in the concert.' src={user.image} layout='fill' />
       </S.Photo>
-      <S.Dropdown display={display} ref={dropdownRef}>
+      <S.Dropdown display={display ? 1 : 0} ref={dropdownRef}>
         <Link href='/profile'>
           <S.Link>
             <S.Name>{user.name}</S.Name>

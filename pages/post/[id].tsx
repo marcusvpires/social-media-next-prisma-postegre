@@ -1,8 +1,8 @@
 import React from 'react';
 import { GetServerSideProps } from 'next';
-import ReactMarkdown from 'react-markdown';
 import Layout from '../../components/Layout';
 import { PostProps } from '../../components/Post';
+import Markdown from '../../styles/Mardown';
 import prisma from '../../lib/prisma';
 import * as S from '../../styles/pageStyles/postPage';
 
@@ -26,9 +26,10 @@ const Post: React.FC<PostProps> = (props) => {
   return (
     <Layout>
       <S.Wrapper>
-        <S.Container>
-          <ReactMarkdown children={props.content} />
-        </S.Container>
+        <S.Title>{props.title}</S.Title>
+        <Markdown>
+          <S.Container dangerouslySetInnerHTML={{__html: props.content}} />
+        </Markdown>
       </S.Wrapper>
     </Layout>
   );

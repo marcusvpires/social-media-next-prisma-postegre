@@ -10,7 +10,6 @@ const useOnClickOutside = (refs: HTMLElement[], handler: Function) => {
     const listener = (event) => {
       const isInner = refs.some((ref) => {
         if (ref && ref.contains(event.target)) {
-          console.log(ref)
           return true
         };
       });
@@ -26,7 +25,7 @@ const useOnClickOutside = (refs: HTMLElement[], handler: Function) => {
 };
 
 export const useDropdownDisplay = (refs: HTMLElement[]) => {
-  const [display, setDisplay] = useState<boolean>();
+  const [display, setDisplay] = useState(false);
   const handleDisplay = () => setDisplay(!display);
   useOnClickOutside(refs, () => setDisplay(false));
   return [display, handleDisplay];

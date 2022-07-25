@@ -1,5 +1,4 @@
 import React from 'react';
-import create from '../../../db/controller/post/create';
 import * as I from '@styled-icons/boxicons-regular';
 
 type ButtonType = {
@@ -97,12 +96,6 @@ const Buttons = (editor, title): ButtonType[][] => [
       Icon: <I.Redo />,
       onClick: () => editor.chain().focus().redo().run(),
     },
-  ],
-  [
-    {
-      Icon: <I.Save />,
-      onClick: () => create(editor, title)
-    }
   ]
 ];
 

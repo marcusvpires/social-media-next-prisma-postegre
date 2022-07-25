@@ -12,22 +12,21 @@ export const Wrapper = styled.section`
 `;
 
 export const Container = styled.div`
-  max-width: 50rem;
-`
+  max-width: 44rem;
+  padding: 1rem;
+`;
 
-export const Content = styled.div`
-  h1 {
-      font-size: 1.5em;
-      font-weight: bold;
-      margin-bottom: 5px;
-      letter-spacing: .05em
-  }
-
-  p {
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased !important;
-    -moz-font-smoothing: antialiased !important;
-    text-rendering: optimizelegibility !important;
-    letter-spacing: .03em;
-  }
-`
+export const Title = styled.div`
+  border: none;
+  border-bottom: 2px solid var(--border);
+  background-color: var(--bg-2);
+  font-size: 2.5em;
+  line-height: calc(1ex / 0.42);
+  font-weight: bold;
+  padding: 1rem;
+  display: inline-block;
+  width: 100%;
+  margin-top: 2rem;
+  max-width: 44rem;
+  color: var(--txt-1);
+`;

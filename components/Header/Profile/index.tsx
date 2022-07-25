@@ -1,6 +1,5 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { signIn, useSession } from 'next-auth/react';
-import Image from 'next/image';
 import Profile from './Profile';
 import * as S from './styled';
 
