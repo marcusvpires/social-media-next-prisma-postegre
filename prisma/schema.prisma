@@ -8,12 +8,14 @@ generator client {
 }
 
 model Post {
-  id        String  @id @default(cuid())
+  id        String   @id @default(cuid())
   title     String
   content   String?
   preview   String?
-  published Boolean @default(false)
-  author    User?   @relation(fields: [authorId], references: [id])
+  published Boolean  @default(false)
+  author    User?    @relation(fields: [authorId], references: [id])
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
   authorId  String?
 }
 
@@ -72,4 +74,3 @@ model VerificationToken {
   @@unique([identifier, token])
   @@map("verificationtokens")
 }
-

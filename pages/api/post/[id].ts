@@ -79,6 +79,7 @@ const PUT = async (req: NextApiRequest, res: NextApiResponse) => {
 const DELETE = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { id } = req.query;
+    console.log(id)
     const result = await prisma.post.update({
       where: { id: String(id) },
       data: {

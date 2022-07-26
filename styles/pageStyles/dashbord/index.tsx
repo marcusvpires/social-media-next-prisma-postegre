@@ -13,7 +13,8 @@ export const Feed = styled.section`
 `;
 
 export const Content = styled.div`
-  max-width: 70rem;
+  max-width: 50rem;
+  width: -webkit-fill-available;
 `;
 
 export const Container = styled.div`

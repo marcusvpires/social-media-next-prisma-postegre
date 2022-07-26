@@ -6,6 +6,8 @@ import * as S from './styled';
 export type PostProps = {
   id: string;
   title: string;
+  createdAt: string;
+  updatedAt: string;
   author: {
     name: string;
     email: string;

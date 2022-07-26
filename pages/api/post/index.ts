@@ -8,6 +8,8 @@ type PostType = {
   content: string;
   preview?: string;
   published?: boolean;
+  createdAt: string;
+  updatedAt: string;
   author: {
     email?: string;
     id?: string;
@@ -36,7 +38,13 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
 
 const GET = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const { where = {} } = req.body;
+    const { email } = req.headers;
+    let where = {};
+    if (email) {
+      where = {
+        author: { email: email },
+      };
+    }
     const result = await prisma.post.findMany({
       where: where,
       select: {
@@ -51,6 +59,11 @@ const GET = async (req: NextApiRequest, res: NextApiResponse) => {
           },
         },
       },
+      orderBy: [
+        {
+          updatedAt: 'desc'
+        }
+      ]
     });
     res.json({ ok: true, posts: result });
   } catch (error) {
@@ -61,10 +74,10 @@ const GET = async (req: NextApiRequest, res: NextApiResponse) => {
 const POST = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const session = await getSession({ req });
-    if (!session?.user?.email) throw new Error('Requisição não autorizada')
+    if (!session?.user?.email) throw new Error('Requisição não autorizada');
     const { post } = req.body;
     const { title, content, preview = '', published = false } = post;
-    if (!title || !content ) {
+    if (!title || !content) {
       throw new Error(`O post deve ter 'title' e 'content'`);
     } else {
       const result = await prisma.post.create({

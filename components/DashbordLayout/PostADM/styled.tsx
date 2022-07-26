@@ -67,5 +67,7 @@ export const Published = styled.div`
   color: var(--blue-d);
   width: 5rem;
   text-align: center;
+  border: ${(props: { published?: string }) =>
+    props.published ? '1px solid var(--blue)' : 'none'};
   cursor: pointer;
 `;

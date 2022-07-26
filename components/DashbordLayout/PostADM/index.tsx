@@ -7,20 +7,15 @@ import { Edit, Trash, PaperPlane } from '@styled-icons/boxicons-regular';
 export type PostProps = {
   id: string;
   title: string;
+  updatedAt: string;
   author: {
-    name: string;
-    email: string;
     image: string;
   } | null;
-  content: string;
+  preview?: string;
   published: boolean;
 };
 
-const PostADM: React.FC<{ post: PostProps, publish?: Function }> = ({ post, publish }) => {
-  let content = post.content;
-  if (content.length > 250) {
-    content = content.slice(0, 250);
-  }
+const PostADM: React.FC<{ post: PostProps, publish?: Function, excluir: Function }> = ({ post, publish, excluir }) => {
   return (
     <S.Wrapper>
       <Link href={`/post/${post.id}`}>
@@ -30,7 +25,7 @@ const PostADM: React.FC<{ post: PostProps, publish?: Function }> = ({ post, publ
           </S.Image>
           <S.Post>
             <S.Title>{post.title}</S.Title>
-            <S.Content>{content}</S.Content>
+            <S.Content>{post.updatedAt}</S.Content>
           </S.Post>
         </S.Container>
       </Link>
@@ -50,7 +45,7 @@ const PostADM: React.FC<{ post: PostProps, publish?: Function }> = ({ post, publ
         <S.Button icon>
           <Edit />
         </S.Button>
-        <S.Button icon color='var(--red-d)'>
+        <S.Button icon color='var(--red-d)' onClick={() => excluir(post.id) }>
           <Trash />
         </S.Button>
       </S.Buttons>
