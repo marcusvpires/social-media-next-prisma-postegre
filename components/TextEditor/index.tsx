@@ -8,6 +8,7 @@ import * as S from './styled';
 
 export default () => {
   const [title, setTitle] = React.useState('');
+  const [ID, setID] = React.useState('');
   const editor = useEditor({
     extensions: Options,
     content: Teste,
@@ -21,15 +22,29 @@ export default () => {
       const content = editor.getHTML();
       const preview = editor.getText()
       const post = { title, content, preview, published };
-      fetch('/api/post', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ post })
-      }) 
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data)
-      });
+      if (!ID) {
+        fetch('/api/post', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ post })
+        }) 
+        .then((res) => res.json())
+        .then((res) => {
+          console.log('RES:', res)
+          setID(res?.post?.id)
+        });
+      } else {
+        fetch(`/api/post/${ID}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ post })
+        }) 
+        .then((res) => res.json())
+        .then((res) => {
+          console.log('RES:', res)
+          setID(res?.post?.id)
+        });
+      }
     } catch (error) {
       console.error(error);
     }

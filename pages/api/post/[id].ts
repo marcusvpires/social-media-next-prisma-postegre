@@ -1,4 +1,3 @@
-import { Body } from '@styled-icons/boxicons-regular';
 import { NextApiRequest, NextApiResponse } from 'next';
 import prisma from '../../../lib/prisma';
 
