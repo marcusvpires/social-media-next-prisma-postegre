@@ -49,18 +49,27 @@ export const Buttons = styled.div`
   align-items: center;
   margin: 0.5rem;
 `;
-export const Button = styled.div`
+export const Edit = styled.a`
+  text-decoration: none;
   width: 2.2rem;
   padding: 0.5rem;
   margin: 0.2rem;
   border-radius: 5px;
-  color: ${(props: { color?: string }) => (props.color ? props.color : 'var(--txt-1)')};
+  color: var(--txt-1);
+  cursor: pointer;
+`;
+export const Trash = styled.div`
+  width: 2.2rem;
+  padding: 0.5rem;
+  margin: 0.2rem;
+  border-radius: 5px;
+  color: var(--red-d);
   cursor: pointer;
 `;
 export const Published = styled.div`
   padding: 0.5rem;
   margin: 0.2rem;
-  margin-right: .5rem;
+  margin-right: 0.5rem;
   border-radius: 5px;
   background-color: ${(props: { published?: string }) =>
     props.published ? 'var(--blue-l)' : 'tranparent'};

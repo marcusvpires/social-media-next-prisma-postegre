@@ -6,17 +6,35 @@ import { Teste } from './initialContent';
 import Options from './Options';
 import * as S from './styled';
 
-export default () => {
-  const [title, setTitle] = React.useState('');
-  const [ID, setID] = React.useState('');
+export type PostProps = {
+  id: string;
+  title: string;
+  createdAt?: string;
+  updatedAt?: string;
+  author: {
+    name?: string;
+    email: string;
+    image?: string;
+  } | null;
+  content: string;
+  preview: string;
+  published: boolean;
+};
+
+export const TextEditor: React.FC<{ post?: PostProps }> = ({ post }) => {
+  const [title, setTitle] = React.useState(post ? post.title : '');
+  const [ID, setID] = React.useState(post ? post.id : '');
+
   const editor = useEditor({
     extensions: Options,
-    content: Teste,
+    content: post ? post.content : Teste,
   });
+
   const handleTitle = (ev: React.ChangeEvent<HTMLInputElement>) => {
     const value = ev.target.value;
     setTitle(value);
   };
+
   const submit = async (editor, title, published = false) => {
     try {
       const content = editor.getHTML();
@@ -49,6 +67,7 @@ export default () => {
       console.error(error);
     }
   };
+
   return (
     <S.Wrapper>
       <Markdown>
@@ -65,3 +84,5 @@ export default () => {
     </S.Wrapper>
   );
 };
+
+export default TextEditor

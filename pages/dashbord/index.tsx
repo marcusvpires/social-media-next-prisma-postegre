@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import prisma from '../../lib/prisma';
 
-import { useRouter } from 'next/router';
 import { GetServerSideProps } from 'next';
 import { getSession, useSession } from 'next-auth/react';
 

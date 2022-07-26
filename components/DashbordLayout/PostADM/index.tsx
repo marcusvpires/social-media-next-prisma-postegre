@@ -42,12 +42,14 @@ const PostADM: React.FC<{ post: PostProps, publish?: Function, excluir: Function
         >
           {!post.published && 'Publicar'}
         </S.Published>
-        <S.Button icon>
-          <Edit />
-        </S.Button>
-        <S.Button icon color='var(--red-d)' onClick={() => excluir(post.id) }>
+        <Link href={`/editar/${post.id}`} passHref >
+          <S.Edit>
+            <Edit />
+          </S.Edit>
+        </Link>
+        <S.Trash onClick={() => excluir(post.id) }>
           <Trash />
-        </S.Button>
+        </S.Trash>
       </S.Buttons>
     </S.Wrapper>
   );

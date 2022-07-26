@@ -1,9 +1,12 @@
 import React from 'react';
-import { GetServerSideProps } from 'next';
-import Layout from '../../components/Layout';
-import { PostProps } from '../../components/Post';
-import Markdown from '../../styles/Mardown';
 import prisma from '../../lib/prisma';
+
+import { GetServerSideProps } from 'next';
+import { PostProps } from '../../components/Post';
+
+import Layout from '../../components/Layout';
+import Markdown from '../../styles/Mardown';
+
 import * as S from '../../styles/pageStyles/postPage';
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
