@@ -7,28 +7,52 @@ import prisma from '../../lib/prisma';
 import * as S from '../../styles/pageStyles/postPage';
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const post = await prisma.post.findUnique({
+  const result = await prisma.post.findUnique({
     where: {
       id: String(params?.id),
     },
-    include: {
+    select: {
+      id: true,
+      title: true,
+      content: true,
+      published: true,
+      updatedAt: true,
       author: {
-        select: { name: true, email: true },
+        select: {
+          image: true,
+        },
       },
     },
   });
+  const updatedAt = result.updatedAt.toLocaleDateString('pt-br', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+  const post = {
+    id: result.id,
+    title: result.title,
+    content: result.content,
+    published: result.published,
+    updatedAt: updatedAt,
+    author: {
+      image: result.author.image,
+    },
+  };
   return {
     props: post,
   };
 };
 
 const Post: React.FC<PostProps> = (props) => {
+  console.log(props)
   return (
     <Layout>
       <S.Wrapper>
         <S.Title>{props.title}</S.Title>
         <Markdown>
-          <S.Container dangerouslySetInnerHTML={{__html: props.content}} />
+          <S.Container dangerouslySetInnerHTML={{ __html: props.content }} />
         </Markdown>
       </S.Wrapper>
     </Layout>

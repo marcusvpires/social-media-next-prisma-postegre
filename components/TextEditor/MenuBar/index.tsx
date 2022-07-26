@@ -1,5 +1,4 @@
 import React from 'react';
-import create from '../../../db/controller/post/create';
 import Buttons from './Buttons';
 import Heading from './Heading';
 import * as S from './styled';

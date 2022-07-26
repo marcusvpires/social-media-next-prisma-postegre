@@ -33,7 +33,7 @@ const Profile: React.FC<Props> = ({ user }) => {
         <Link href='/dashbord'>
           <S.Link>Dashbord</S.Link>
         </Link>
-        <Link href='/create'>
+        <Link href='/criar'>
           <S.Link>Criar publicação</S.Link>
         </Link>
         <Link href='/config'>
