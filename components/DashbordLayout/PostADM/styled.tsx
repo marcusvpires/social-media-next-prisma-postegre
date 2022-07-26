@@ -7,6 +7,7 @@ export const Wrapper = styled.section`
   background-color: var(--bg-1);
   border-radius: 5px;
   display: flex;
+  justify-content: space-between;
 `;
 export const Container = styled.a`
   text-decoration: none;
@@ -15,6 +16,7 @@ export const Container = styled.a`
   align-items: center;
   letter-spacing: 0.2px;
   margin-left: 0.5rem;
+  width: -webkit-fill-available;
   cursor: pointer;
 `;
 export const Image = styled.div`
@@ -45,12 +47,25 @@ export const Buttons = styled.div`
   display: flex;
   height: auto;
   align-items: center;
-
+  margin: 0.5rem;
 `;
 export const Button = styled.div`
-  height: 1.2rem;
-  width: 1.2rem;
-  margin: 0.5rem;
+  width: 2.2rem;
+  padding: 0.5rem;
+  margin: 0.2rem;
+  border-radius: 5px;
   color: ${(props: { color?: string }) => (props.color ? props.color : 'var(--txt-1)')};
+  cursor: pointer;
+`;
+export const Published = styled.div`
+  padding: 0.5rem;
+  margin: 0.2rem;
+  margin-right: .5rem;
+  border-radius: 5px;
+  background-color: ${(props: { published?: string }) =>
+    props.published ? 'var(--blue-l)' : 'tranparent'};
+  color: var(--blue-d);
+  width: 5rem;
+  text-align: center;
   cursor: pointer;
 `;

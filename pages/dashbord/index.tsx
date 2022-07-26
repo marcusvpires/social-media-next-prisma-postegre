@@ -1,9 +1,10 @@
 import React from 'react';
 import { GetServerSideProps } from 'next';
-import { getSession } from 'next-auth/react';
+import { getSession, useSession } from 'next-auth/react';
 import prisma from '../../lib/prisma';
 import DashbordLayout from '../../components/DashbordLayout';
 import PostADM from '../../components/DashbordLayout/PostADM';
+import NotAuthorized from '../../components/NotAutorized';
 import { PostProps } from '../../components/Post';
 import * as S from '../../styles/pageStyles/dashbord';
 
@@ -34,13 +35,25 @@ type Props = {
 };
 
 const Dashbord: React.FC<Props> = (props) => {
-  console.log(props.posts);
+
+  const { data: session, status } = useSession()
+
+  if (status === "unauthenticated") {
+    return <DashbordLayout><NotAuthorized /></DashbordLayout>
+  } else {
+    console.log(session)
+  }
+  
+  const publish = (id: string) => {
+    console.log('ID:', id)
+  }
+
   return (
     <DashbordLayout>
       <S.Feed>
         <S.Content>
           {props.posts.map((post) => (
-            <PostADM key={post.id} post={post} />
+            <PostADM key={post.id} post={post} publish={publish}/>
           ))}
         </S.Content>
       </S.Feed>

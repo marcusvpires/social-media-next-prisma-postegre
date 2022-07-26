@@ -16,7 +16,7 @@ export type PostProps = {
   published: boolean;
 };
 
-const PostADM: React.FC<{ post: PostProps }> = ({ post }) => {
+const PostADM: React.FC<{ post: PostProps, publish?: Function }> = ({ post, publish }) => {
   let content = post.content;
   if (content.length > 250) {
     content = content.slice(0, 250);
@@ -35,11 +35,22 @@ const PostADM: React.FC<{ post: PostProps }> = ({ post }) => {
         </S.Container>
       </Link>
       <S.Buttons>
-        <S.Button color='var(--blue-d)'>{!post.published && <PaperPlane />}</S.Button>
-        <S.Button>
+        <S.Published
+          published={!post.published}
+          onClick={
+            !post.published ?
+            (() => {
+              publish(post.id);
+            }) :
+            (() => {})
+          }
+        >
+          {!post.published && 'Publicar'}
+        </S.Published>
+        <S.Button icon>
           <Edit />
         </S.Button>
-        <S.Button color='var(--red-d)'>
+        <S.Button icon color='var(--red-d)'>
           <Trash />
         </S.Button>
       </S.Buttons>
