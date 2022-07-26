@@ -5,7 +5,7 @@ import Heading from './Heading';
 import * as S from './styled';
 import { Save, PaperPlane } from '@styled-icons/boxicons-regular';
 
-const MenuBar = ({ editor, title }) => {
+const MenuBar = ({ editor, title, submit }) => {
   if (!editor) return <S.MenuBar />;
   return (
     <S.MenuBar>
@@ -22,10 +22,10 @@ const MenuBar = ({ editor, title }) => {
         </S.ButtonGroup>
       ))}
       <S.ButtonGroup>
-        <S.Button onClick={() => create(editor, title)}>
+        <S.Button onClick={() => submit(editor, title)}>
           <Save />
         </S.Button>
-        <S.Button>
+        <S.Button onClick={() => submit(editor, title, true)}>
           <PaperPlane />
         </S.Button>
       </S.ButtonGroup>

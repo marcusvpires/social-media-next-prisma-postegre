@@ -1,4 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
+import { getSession } from 'next-auth/react';
+import Options from '../../../components/TextEditor/Options';
 import prisma from '../../../lib/prisma';
 
 type PostType = {
@@ -21,14 +23,8 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
       case 'POST':
         POST(req, res);
         break;
-      case 'PUT':
-        PUT(req, res);
-        break;
-      case 'DELETE':
-        DELETE(req, res);
-        break;
-      case 'OPTIONS':
-        OPTIONS(req, res);
+      case 'OPTION':
+        OPTION(req, res);
         break;
       default:
         throw new Error(`O método '${req.method}' não existe`);
@@ -64,10 +60,12 @@ const GET = async (req: NextApiRequest, res: NextApiResponse) => {
 
 const POST = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
+    const session = await getSession({ req });
+    if (!session?.user?.email) throw new Error('Requisição não autorizada')
     const { post } = req.body;
-    const { title, content, preview = '', published = false, author } = post;
-    if (!title || !content || !author || (!author.email && !author.id)) {
-      throw new Error(`O post deve ter 'title', 'content', 'author = { email ou id }'`);
+    const { title, content, preview = '', published = false } = post;
+    if (!title || !content ) {
+      throw new Error(`O post deve ter 'title' e 'content'`);
     } else {
       const result = await prisma.post.create({
         data: {
@@ -76,7 +74,7 @@ const POST = async (req: NextApiRequest, res: NextApiResponse) => {
           preview,
           published,
           author: {
-            connect: { email: author.email },
+            connect: { email: session?.user?.email },
           },
         },
         include: {
@@ -90,14 +88,10 @@ const POST = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
-const PUT = async (req: NextApiRequest, res: NextApiResponse) => {
-  res.json({ ok: true, method: 'PUT' });
-};
-
-const DELETE = async (req: NextApiRequest, res: NextApiResponse) => {
-  res.json({ ok: true, method: 'DELETE' });
-};
-
-const OPTIONS = async (req: NextApiRequest, res: NextApiResponse) => {
-  res.json({ ok: true, method: 'OPTIONS' });
+const OPTION = async (req: NextApiRequest, res: NextApiResponse) => {
+  try {
+    res.json({ ok: true, method: 'OPTIONS' });
+  } catch (error) {
+    res.json({ ok: false, error: error.toString(), body: req.body });
+  }
 };
