@@ -37,7 +37,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
 }
 
 const GET = async (req: NextApiRequest, res: NextApiResponse) => {
-  try {
+  try { 
     const { query } = req.headers
     const where = JSON.parse(String(query))
     const result = await prisma.post.findMany({
