@@ -82,3 +82,14 @@ export const Option = styled.div`
     background-color: var(--bg-3);
   }
 `;
+
+// Load Image
+
+export const ImgWrapper = styled.label`
+  height: 100%;
+  width: 100%;
+  position: relative;
+`;
+export const ImgInput = styled.input`
+  display: none;
+`;

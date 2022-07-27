@@ -1,4 +1,6 @@
 import React from 'react';
+import { Editor } from '@tiptap/react';
+import LoadImage from './LoadImage';
 import * as I from '@styled-icons/boxicons-regular';
 
 type ButtonType = {
@@ -7,7 +9,7 @@ type ButtonType = {
   isActive?: boolean;
 };
 
-const Buttons = (editor, title): ButtonType[][] => [
+const Buttons = (editor: Editor): ButtonType[][] => [
   [
     {
       Icon: <I.Bold />,
@@ -69,6 +71,10 @@ const Buttons = (editor, title): ButtonType[][] => [
       Icon: <I.CodeBlock />,
       onClick: () => editor.chain().focus().toggleCodeBlock().run(),
       isActive: editor.isActive('codeBlock'),
+    },
+    {
+      Icon: <LoadImage editor={editor}/>,
+      onClick: () => {}
     },
     {
       Icon: <I.BookmarkAlt />,

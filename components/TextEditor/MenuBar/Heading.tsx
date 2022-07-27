@@ -1,16 +1,24 @@
-import React, { useState, useEffect, useRef, EventHandler } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Editor } from '@tiptap/react';
+
 import * as S from './styled';
 import { DownArrow } from '@styled-icons/boxicons-regular';
 
-const Heading = ({ editor }) => {
+type PropsType = {
+  editor: Editor;
+};
+
+const Heading: React.FC<PropsType> = ({ editor }) => {
   const [selected, setSelected] = useState('paragraph');
   const [display, setDisplay] = useState<boolean>(false);
   const selectRef = useRef();
   useEffect(() => {
     if (editor.isActive('paragraph')) setSelected('Normal');
     else if (editor.isActive('heading', { level: 1 })) setSelected('Título');
-    else if (editor.isActive('heading', { level: 2 })) setSelected('Subtítulo 1');
-    else if (editor.isActive('heading', { level: 3 })) setSelected('Subtítulo 2');
+    else if (editor.isActive('heading', { level: 2 }))
+      setSelected('Subtítulo 1');
+    else if (editor.isActive('heading', { level: 3 }))
+      setSelected('Subtítulo 2');
   }, [editor]);
   const handleDisplay = () => setDisplay(!display);
   return (
@@ -60,8 +68,12 @@ const Dropdown = ({ editor, display, setDisplay, selectRef, setSelected }) => {
     <S.Dropdown display={display ? 1 : 0} ref={ref}>
       <S.Option onClick={() => handleClick('Normal')}>Normal</S.Option>
       <S.Option onClick={() => handleClick('Título')}>Título</S.Option>
-      <S.Option onClick={() => handleClick('Subtítulo 1')}>Subtítulo 1</S.Option>
-      <S.Option onClick={() => handleClick('Subtítulo 2')}>Subtítulo 2</S.Option>
+      <S.Option onClick={() => handleClick('Subtítulo 1')}>
+        Subtítulo 1
+      </S.Option>
+      <S.Option onClick={() => handleClick('Subtítulo 2')}>
+        Subtítulo 2
+      </S.Option>
     </S.Dropdown>
   );
 };

@@ -16,6 +16,7 @@ import Strike from '@tiptap/extension-strike';
 import Document from '@tiptap/extension-document';
 import TextAlign from '@tiptap/extension-text-align';
 import Text from '@tiptap/extension-text';
+import Image from '@tiptap/extension-image'
 
 const Options = [
   Blockquote,
@@ -35,6 +36,7 @@ const Options = [
   Paragraph,
   Strike,
   Text,
+  Image,  
   TextAlign.configure({
     types: ['heading', 'paragraph'],
   }),

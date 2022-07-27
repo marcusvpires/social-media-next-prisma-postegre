@@ -1,17 +1,25 @@
 import React from 'react';
 import Buttons from './Buttons';
 import Heading from './Heading';
-import * as S from './styled';
-import { Save, PaperPlane } from '@styled-icons/boxicons-regular';
+import { Editor } from '@tiptap/react';
 
-const MenuBar = ({ editor, title, submit }) => {
+import { Save, PaperPlane } from '@styled-icons/boxicons-regular';
+import * as S from './styled';
+
+type PropsType = {
+  editor: Editor;
+  title: string;
+  submit: Function;
+};
+
+const MenuBar: React.FC<PropsType> = ({ editor, title, submit }) => {
   if (!editor) return <S.MenuBar />;
   return (
     <S.MenuBar>
       <S.ButtonGroup>
         <Heading editor={editor} />
       </S.ButtonGroup>
-      {Buttons(editor, title).map((group, index) => (
+      {Buttons(editor).map((group, index) => (
         <S.ButtonGroup key={index}>
           {group.map((btn, index) => (
             <S.Button key={index} onClick={btn.onClick} isActive={btn.isActive}>

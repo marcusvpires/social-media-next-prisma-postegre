@@ -33,7 +33,7 @@ export const Button = styled.div`
   border: 1px solid var(--txt-1);
   text-align: center;
   border-radius: 5px;
-`;
+  `;
 
 // Loguin
 
@@ -42,6 +42,8 @@ export const Loguin = styled.a`
   width: 8rem;
   text-decoration: none;
   color: var(--txt-1);
+  user-select: none;
+  cursor: pointer;
 `;
 
 // Dropdown

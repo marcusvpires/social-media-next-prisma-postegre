@@ -94,6 +94,15 @@ const Markdown = styled.div`
   blockquote p {
     margin: 0;
   }
+
+  img {
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin: 1.125rem auto;
+    max-width: 100%;
+    max-height: calc(50vh + 150px);
+  }
 `;
 
 export default Markdown;
