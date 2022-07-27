@@ -17,6 +17,7 @@ import Document from '@tiptap/extension-document';
 import TextAlign from '@tiptap/extension-text-align';
 import Text from '@tiptap/extension-text';
 import Image from '@tiptap/extension-image'
+import Placeholder from '@tiptap/extension-placeholder'
 
 const Options = [
   Blockquote,
@@ -37,6 +38,9 @@ const Options = [
   Strike,
   Text,
   Image,  
+  Placeholder.configure({
+    placeholder: 'Conte sua histórias...',
+  }),
   TextAlign.configure({
     types: ['heading', 'paragraph'],
   }),

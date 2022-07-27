@@ -27,7 +27,7 @@ export const TextEditor: React.FC<{ post?: PostProps }> = ({ post }) => {
 
   const editor = useEditor({
     extensions: Options,
-    content: post ? post.content : Teste,
+    content: post ? post.content : '',
   });
 
   const handleTitle = (ev: React.ChangeEvent<HTMLInputElement>) => {
@@ -74,7 +74,7 @@ export const TextEditor: React.FC<{ post?: PostProps }> = ({ post }) => {
         <MenuBar editor={editor} title={title} submit={submit}/>
         <S.Content>
           <S.TitleContainer>
-            <S.Title value={title} onChange={handleTitle} placeholder='Escreva o tpitulo aqui' />
+            <S.Title value={title} onChange={handleTitle} placeholder='Escreva o título aqui' />
           </S.TitleContainer>
           <S.TextEditor>
             <EditorContent editor={editor} />

@@ -1,1 +1,3 @@
 export const Teste = `<p>Conte sua história aqui, você pode usar os atalhos de teclado e do markdown para agilizar o trabalho:</p><ul><li><p>Negrito <code>ctrl + B</code></p></li><li><p>Itálico <code>ctrl + I</code></p></li><li><p><code>#</code> Título 1</p><p>...</p></li><li><p><code>####</code> Subtítulo 2  </p></li><li><p><code>-</code> Lista</p></li></ul>`;
+
+export const Tutorial = `<p>Conte sua história aqui, você pode usar os atalhos de teclado e do markdown para agilizar o trabalho:</p><ul><li><p>Negrito <code>ctrl + B</code></p></li><li><p>Itálico <code>ctrl + I</code></p></li><li><p><code>#</code> Título 1</p><p>...</p></li><li><p><code>####</code> Subtítulo 2  </p></li><li><p><code>-</code> Lista</p></li></ul>`;

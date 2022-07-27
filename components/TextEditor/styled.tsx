@@ -42,6 +42,13 @@ export const TextEditor = styled.div`
     min-height: calc(100vh - 8rem);
     outline: none !important;
   }
+  .ProseMirror p.is-editor-empty:first-child::before {
+    color: var(--txt-3);
+    content: attr(data-placeholder);
+    float: left;
+    height: 0;
+    pointer-events: none;
+  }
 `;
 
 // Menubar

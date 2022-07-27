@@ -6,7 +6,7 @@ import { IPost } from '../../../pages/dashbord';
 import * as S from './styled';
 import { Edit, Trash } from '@styled-icons/boxicons-regular';
 
-const publish = (ID: string, email: string, query: string, callback: Function) => {
+const publish = (ID: string, query: string, callback: Function) => {
   const post = { published: true };
   fetch(`/api/post/${ID}`, {
     method: 'PUT',
@@ -16,29 +16,32 @@ const publish = (ID: string, email: string, query: string, callback: Function) =
     .then((res) => res.json())
     .then((res) => {
       if (res.ok) {
-        refresh(email, query, callback);
+        refresh(query, callback);
       }
     });
 };
 
-const refresh = (email: string, query: string, callback: Function) => {
+const refresh = (query: string, callback: Function) => {
   fetch(`/api/post`, {
     method: 'GET',
-    headers: { 'Content-Type': 'application/json', 'query': email },
+    headers: { 'Content-Type': 'application/json', 'query': query },
   })
     .then((res) => res.json())
-    .then((res) => callback(res.posts));
+    .then((res) => {
+      console.log('Response:', res)
+      callback(res.posts)
+    });
 };
 
-const deletePost = (ID: string, email: string, query: string, callback: Function) => {
+const deletePost = (ID: string,  query: string, callback: Function) => {
   fetch(`/api/post/${ID}`, {
     method: 'DELETE',
-    headers: { 'Content-Type': 'application/json', 'email': email },
+    headers: { 'Content-Type': 'application/json', 'email': query },
   })
     .then((res) => res.json())
     .then((res) => {
       if (res.ok) {
-        refresh(email, query, callback);
+        refresh(query, callback);
       }
     });
 };
@@ -73,7 +76,7 @@ const PostADM: React.FC<PropsType> = ({ post, email, setPosts, query }) => {
           published={!post.published}
           onClick={
             !post.published
-              ? () => publish(post.id, email, query, setPosts)
+              ? () => publish(post.id, query, setPosts)
               : () => {}
           }
         >
@@ -84,7 +87,7 @@ const PostADM: React.FC<PropsType> = ({ post, email, setPosts, query }) => {
             <Edit />
           </S.Edit>
         </Link>
-        <S.Trash onClick={() => deletePost(post.id, email, query, setPosts)}>
+        <S.Trash onClick={() => deletePost(post.id, query, setPosts)}>
           <Trash />
         </S.Trash>
       </S.Buttons>
