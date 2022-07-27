@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
   width: 12rem;
   padding: 1rem;
   border: 1px solid var(--border);
+  background-color: var(--bg-1);
 `;
 export const Item = styled.div`
   padding: .8rem;

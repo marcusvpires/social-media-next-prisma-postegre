@@ -1,6 +1,12 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
 export const Wrapper = styled.section`
+  width: 100vw;
+  height: 4rem;
+  z-index: 100;
+  position: relative;
+`;
+export const Header = styled.section`
   width: 100vw;
   height: 4rem;
   padding: 0rem 2rem;
@@ -9,6 +15,8 @@ export const Wrapper = styled.section`
   justify-content: space-between;
   box-shadow: 0 2px 5px var(--border);
   z-index: 100;
+  position: absolute;
+  background-color: var(--bg-1);
 `;
 
 // Logo

@@ -63,7 +63,7 @@ export const Dropdown = styled.div`
   border-radius: 5px;
   box-shadow: ${(props: propsDisplay) => (props.display ? '1px 1px 5px var(--border)' : 'none')};
   border: ${(props: propsDisplay) => (props.display ? '1px solid var(--border)' : 'none')};
-  background-color: var(--bg-2);
+  background-color: var(--bg-1);
   transition: max-height 400ms;
   transition: padding 100ms;
   z-index: 90;
