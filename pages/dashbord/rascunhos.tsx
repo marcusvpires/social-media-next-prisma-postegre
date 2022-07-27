@@ -1,10 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
+import prisma from '../../lib/prisma';
+
 import { GetServerSideProps } from 'next';
 import { getSession } from 'next-auth/react';
-import prisma from '../../lib/prisma';
+
 import DashbordLayout from '../../components/DashbordLayout';
-import Post, { PostProps } from '../../components/Post';
+import PostADM from '../../components/DashbordLayout/PostADM';
+import NotAuthorized from '../../components/NotAutorized';
+
 import * as S from '../../styles/pageStyles/dashbord';
+
+export interface IPost {
+  id: string;
+  title: string;
+  preview: string;
+  published: boolean;
+  updatedAt: string;
+  createdAt: string;
+  author: {
+    name?: string;
+    email: string;
+    image: string;
+  };
+}
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const session = await getSession({ req });
@@ -13,34 +31,78 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
     return { props: { posts: [] } };
   }
 
-  const posts = await prisma.post.findMany({
+  const result = await prisma.post.findMany({
     where: {
       author: { email: session.user.email },
-      published: false,
+      published: false
     },
-    include: {
+    select: {
+      id: true,
+      title: true,
+      preview: true,
+      published: true,
+      updatedAt: true,
+      createdAt: true,
       author: {
-        select: { name: true },
+        select: {
+          email: true,
+          image: true,
+        },
       },
     },
+    orderBy: [
+      {
+        updatedAt: 'desc',
+      },
+    ],
+  });
+
+  const formatDate = (date) => {
+    return date.toLocaleDateString('pt-br', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+  };
+
+  const posts = result.map((post) => {
+    const updatedAt = formatDate(post.updatedAt);
+    const createdAt = formatDate(post.createdAt);
+    delete post.updatedAt;
+    delete post.createdAt;
+    return { ...post, createdAt, updatedAt };
   });
   return {
-    props: { posts },
+    props: { posts: posts, email: session.user.email },
   };
 };
+const Dashbord: React.FC<{ posts: IPost[]; email: string }> = (props) => {
+  const [posts, setPosts] = useState(props.posts);
+  const query = {
+    author: { email: props.email, published: false },
+  };
 
-type Props = {
-  posts: PostProps[];
-};
+  if (!props.email) {
+    return (
+      <DashbordLayout>
+        <NotAuthorized />
+      </DashbordLayout>
+    );
+  }
 
-
-const Publicados: React.FC<Props> = (props) => {
   return (
     <DashbordLayout>
       <S.Feed>
         <S.Content>
-          {props.posts.map((post) => (
-            <Post key={post.id} post={post} />
+          {posts.map((post) => (
+            <PostADM
+              key={post.id}
+              post={post}
+              setPosts={setPosts}
+              email={props.email}
+              query={JSON.stringify(query)}
+            />
           ))}
         </S.Content>
       </S.Feed>
@@ -48,4 +110,4 @@ const Publicados: React.FC<Props> = (props) => {
   );
 };
 
-export default Publicados;
+export default Dashbord;

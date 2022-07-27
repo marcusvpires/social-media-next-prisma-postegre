@@ -21,6 +21,8 @@ export const Image = styled.div`
   position: relative;
   background-color: white;
   flex-shrink: 0;
+  border-radius: 50%;
+  overflow: hidden;
 `;
 export const Post = styled.div`
   width: 100%;

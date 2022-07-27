@@ -2,14 +2,27 @@ import React, { useState } from 'react';
 import prisma from '../../lib/prisma';
 
 import { GetServerSideProps } from 'next';
-import { getSession, useSession } from 'next-auth/react';
+import { getSession } from 'next-auth/react';
 
 import DashbordLayout from '../../components/DashbordLayout';
 import PostADM from '../../components/DashbordLayout/PostADM';
 import NotAuthorized from '../../components/NotAutorized';
-import { PostProps } from '../../components/Post';
 
 import * as S from '../../styles/pageStyles/dashbord';
+
+export interface IPost {
+  id: string;
+  title: string;
+  preview: string;
+  published: boolean;
+  updatedAt: string;
+  createdAt: string;
+  author: {
+    name?: string;
+    email: string;
+    image: string;
+  };
+}
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const session = await getSession({ req });
@@ -18,7 +31,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
     return { props: { posts: [] } };
   }
 
-  const posts = await prisma.post.findMany({
+  const result = await prisma.post.findMany({
     where: {
       author: { email: session.user.email },
     },
@@ -28,85 +41,46 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
       preview: true,
       published: true,
       updatedAt: true,
+      createdAt: true,
       author: {
         select: {
+          email: true,
           image: true,
         },
       },
     },
     orderBy: [
       {
-        updatedAt: 'desc'
-      }
-    ]
+        updatedAt: 'desc',
+      },
+    ],
   });
-  const result = posts.map((post) => {
-    const updatedAt = post.updatedAt.toLocaleDateString('pt-br', {
+
+  const formatDate = (date) => {
+    return date.toLocaleDateString('pt-br', {
       weekday: 'long',
       year: 'numeric',
       month: 'long',
       day: 'numeric',
     });
-    return {
-      id: post.id,
-      title: post.title,
-      preview: post.preview,
-      published: post.published,
-      updatedAt: updatedAt,
-      author: {
-        image: post.author.image,
-      },
-    };
+  };
+
+  const posts = result.map((post) => {
+    const updatedAt = formatDate(post.updatedAt);
+    const createdAt = formatDate(post.createdAt);
+    delete post.updatedAt;
+    delete post.createdAt;
+    return { ...post, createdAt, updatedAt };
   });
   return {
-    props: { posts: result, email: session.user.email },
+    props: { posts: posts, email: session.user.email },
   };
 };
-
-type Props = {
-  posts: PostProps[];
-  email: string;
-};
-
-const updatePost = (post: object, ID: string, cb: Function) => {
-  fetch(`/api/post/${ID}`, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ post }),
-  })
-    .then((res) => res.json())
-    .then((res) => {
-      console.log('RES:', res);
-      cb(res?.ok);
-    });
-};
-
-const refreshList = (email: string, cb: Function) => {
-  fetch(`/api/post`, {
-    method: 'GET',
-    headers: { 'Content-Type': 'application/json', 'email': email },
-  })
-    .then((res) => res.json())
-    .then((res) => {
-      console.log('RES:', res);
-      cb(res?.posts);
-    });
-};
-
-const deletePost = (ID: string, cb: Function) => {
-  fetch(`/api/post/${ID}`, {
-    method: 'DELETE',
-    headers: { 'Content-Type': 'application/json' },
-  })
-    .then((res) => res.json())
-    .then((res) => {
-      console.log('RES:', res);
-      cb(res?.posts);
-    });
-};
-
-const Dashbord: React.FC<Props> = (props) => {
+const Dashbord: React.FC<{ posts: IPost[]; email: string }> = (props) => {
   const [posts, setPosts] = useState(props.posts);
+  const query = {
+    author: { email: props.email },
+  };
 
   if (!props.email) {
     return (
@@ -116,34 +90,18 @@ const Dashbord: React.FC<Props> = (props) => {
     );
   }
 
-  const publish = (id: string) => {
-    console.log('ID:', id);
-    updatePost({ published: true }, id, (ok: boolean) => {
-      if (ok) {
-        refreshList(props.email, (posts: PostProps[]) => {
-          setPosts(posts);
-        });
-      }
-    });
-  };
-
-  const excluir = (id: string) => {
-    console.log('ID:', id);
-    deletePost(id, (ok: boolean) => {
-      if (ok) {
-        refreshList(props.email, (posts: PostProps[]) => {
-          setPosts(posts);
-        });
-      }
-    });
-  };
-
   return (
     <DashbordLayout>
       <S.Feed>
         <S.Content>
           {posts.map((post) => (
-            <PostADM key={post.id} post={post} publish={publish} excluir={excluir}/>
+            <PostADM
+              key={post.id}
+              post={post}
+              setPosts={setPosts}
+              email={props.email}
+              query={JSON.stringify(query)}
+            />
           ))}
         </S.Content>
       </S.Feed>
