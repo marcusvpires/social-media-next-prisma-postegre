@@ -1,13 +1,26 @@
 import React from 'react';
 import prisma from '../../lib/prisma';
-
 import { GetServerSideProps } from 'next';
-import { PostProps } from '../../components/Post';
 
 import Layout from '../../components/Layout';
 import Markdown from '../../styles/Mardown';
 
 import * as S from '../../styles/pageStyles/postPage';
+
+
+export interface IPost {
+  id: string;
+  title: string;
+  content: string;
+  published: boolean;
+  updatedAt: string;
+  createdAt: string;
+  author: {
+    name?: string;
+    email: string;
+    image: string;
+  };
+}
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const result = await prisma.post.findUnique({
@@ -48,7 +61,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   };
 };
 
-const Post: React.FC<PostProps> = (props) => {
+const Post: React.FC<IPost> = (props) => {
   console.log(props)
   return (
     <Layout>
