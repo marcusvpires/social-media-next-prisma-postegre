@@ -47,7 +47,7 @@ export const TextEditor: React.FC<{ post?: PostProps }> = ({ post }) => {
       const preview = editor.getText();
       if (content === '<p></p>' || !title) {
         setFeedback(
-          'Escreva alguma coisa e defina um título para salvar',
+          `Escreva algo e defina um título para ${published ? 'Publicar' : 'Salvar'}`,
           'warn'
         );
         setLoading('')
@@ -62,14 +62,14 @@ export const TextEditor: React.FC<{ post?: PostProps }> = ({ post }) => {
         })
           .then((res) => res.json())
           .then((res) => {
-            if (res.ok) setFeedback('Salvo com sucesso', 'success');
+            if (res.ok) setFeedback(`${res.post.published ? 'Publicado' : 'Salvo'} com sucesso`, 'success');
             setLoading('')
             setID(res?.post?.id);
           })
           .catch((error) => {
             console.log(error);
             setLoading('')
-            setFeedback('Houve um erro ao salvar', 'error');
+            setFeedback('Houve um erro inesperado', 'error');
           });
       } else {
         fetch(`/api/post/${ID}`, {
@@ -79,19 +79,19 @@ export const TextEditor: React.FC<{ post?: PostProps }> = ({ post }) => {
         })
           .then((res) => res.json())
           .then((res) => {
-            if (res.ok) setFeedback('Salvo com sucesso', 'success');
+            if (res.ok) setFeedback(`${res.post.published ? 'Publicado' : 'Salvo'} com sucesso`, 'success');
             setLoading('')
             setID(res?.post?.id);
           })
           .catch((error) => {
             console.log(error);
             setLoading('')
-            setFeedback('Houve um erro ao salvar', 'error');
+            setFeedback('Houve um erro inesperado', 'error');
           });
       }
     } catch (error) {
       console.error(error);
-      setFeedback('Houve um erro ao salvar', 'error');
+      setFeedback('Houve um erro inesperado', 'error');
       setLoading('')
     }
   };

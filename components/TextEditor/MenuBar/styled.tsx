@@ -2,9 +2,10 @@ import styled from 'styled-components';
 
 export const MenuBar = styled.div`
   width: 100vw;
-  overflow-x: scroll;
+  overflow-x: auto;
+  outline: 2px solid var(--border);
   ::-webkit-scrollbar {
-    height: 4px;
+    height: 7px;
   }
   ::-webkit-scrollbar-track {
     background: var(--bg-2);
@@ -15,7 +16,7 @@ export const MenuBar = styled.div`
 `;
 export const Tools = styled.div`
   height: 2rem;
-  width: 59rem;
+  min-width: 59rem;
   display: flex;
   justify-content: center;
   background-color: var(--bg-2);

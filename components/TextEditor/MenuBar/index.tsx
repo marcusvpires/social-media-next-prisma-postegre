@@ -26,29 +26,30 @@ const MenuBar: React.FC<PropsType> = ({ editor, title, submit, isLoading }) => {
         {Buttons(editor).map((group, index) => (
           <S.ButtonGroup key={index}>
             {group.map((btn, index) => (
-              <S.Button bg={btn.isActive ? 'var(--bg-3)' : 'transparent'}>
-                <S.ButtonIcon key={index} onClick={btn.onClick}>
-                  {btn.Icon}
-                </S.ButtonIcon>
+              <S.Button
+                onClick={btn.onClick}
+                key={index}
+                bg={btn.isActive ? 'var(--bg-3)' : 'transparent'}
+              >
+                <S.ButtonIcon>{btn.Icon}</S.ButtonIcon>
               </S.Button>
             ))}
           </S.ButtonGroup>
         ))}
         <S.ButtonGroup>
-          <S.Button>
-            <S.ButtonIcon
-              onClick={!isLoading ? () => submit(editor, title) : () => {}}
-            >
+          <S.Button
+            onClick={!isLoading ? () => submit(editor, title) : () => {}}
+          >
+            <S.ButtonIcon>
               {isLoading === 'salvar' ? <Loading /> : <Save />}
             </S.ButtonIcon>
             <S.ButtonText>Salvar</S.ButtonText>
           </S.Button>
-          <S.Button color='var(--blue)'>
-            <S.ButtonIcon
-              onClick={
-                !isLoading ? () => submit(editor, title, true) : () => {}
-              }
-            >
+          <S.Button
+            color='var(--blue)'
+            onClick={!isLoading ? () => submit(editor, title, true) : () => {}}
+          >
+            <S.ButtonIcon>
               {isLoading === 'enviar' ? <Loading /> : <PaperPlane />}
             </S.ButtonIcon>
             <S.ButtonText>Publicar</S.ButtonText>
