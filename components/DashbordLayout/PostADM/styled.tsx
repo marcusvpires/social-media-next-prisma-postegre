@@ -60,23 +60,33 @@ export const Edit = styled.a`
 `;
 export const Trash = styled.div`
   width: 2.2rem;
+  height: 2.2rem;
   padding: 0.5rem;
   margin: 0.2rem;
   border-radius: 5px;
   color: var(--red-d);
   cursor: pointer;
 `;
-export const Published = styled.div`
+export const Published = styled.button`
   padding: 0.5rem;
   margin: 0.2rem;
   margin-right: 0.5rem;
   border-radius: 5px;
   background-color: ${(props: { published?: string }) =>
-    props.published ? 'var(--blue-l)' : 'tranparent'};
+    props.published ? 'var(--blue-l)' : 'transparent'};
   color: var(--blue-d);
-  width: 5rem;
-  text-align: center;
+  display: flex;
+  align-items: center;
   border: ${(props: { published?: string }) =>
     props.published ? '1px solid var(--blue)' : 'none'};
   cursor: pointer;
+`;
+export const PublishedIcon = styled.div`
+  width: 1.2rem;
+  height: 1.2rem;
+  color: var(--blue-d);
+`;
+export const PublishedText = styled.div`
+  margin: 0 0.2rem 0 0.4rem;
+  color: var(--blue-d);
 `;

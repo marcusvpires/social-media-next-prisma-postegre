@@ -50,7 +50,7 @@ const GET = async (req: NextApiRequest, res: NextApiResponse) => {
         },
       },
     });
-    res.json({ ok: true, posts: result });
+    res.json({ ok: true, post: result });
   } catch (error) {
     res.json({ ok: false, error: error.toString(), body: req.body });
   }
@@ -70,7 +70,7 @@ const PUT = async (req: NextApiRequest, res: NextApiResponse) => {
       where: { id: String(id) },
       data: post,
     });
-    res.json({ ok: true, posts: result, warn });
+    res.json({ ok: true, post: result, warn });
   } catch (error) {
     res.json({ ok: false, error: error.toString(), body: req.body });
   }
@@ -85,11 +85,11 @@ const DELETE = async (req: NextApiRequest, res: NextApiResponse) => {
       data: {
         published: false,
         author: {
-          connect: { email: 'trash@trash.com' }
+          connect: { email: '@trash' }
         }
       }
     });
-    res.json({ ok: true, posts: result });
+    res.json({ ok: true, post: result });
   } catch (error) {
     res.json({ ok: false, error: error.toString(), body: req.body });
   }

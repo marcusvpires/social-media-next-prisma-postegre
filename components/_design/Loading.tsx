@@ -21,8 +21,8 @@ const spin = keyframes`
 `;
 const Spin = styled.div`
   position: absolute;
-  border: 0.2em solid var(--bg-2);
-  border-top: 0.2em solid var(--border);
+  border: 0.2em solid var(--txt-3);
+  border-top: 0.2em solid var(--txt-2);
   border-radius: 50%;
   display: inline-block;
   vertical-align: middle;

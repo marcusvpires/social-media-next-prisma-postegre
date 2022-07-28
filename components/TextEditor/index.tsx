@@ -79,6 +79,7 @@ export const TextEditor: React.FC<{ post?: PostProps }> = ({ post }) => {
         })
           .then((res) => res.json())
           .then((res) => {
+            console.log(res)
             if (res.ok) setFeedback(`${res.post.published ? 'Publicado' : 'Salvo'} com sucesso`, 'success');
             setLoading('')
             setID(res?.post?.id);
