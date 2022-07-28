@@ -1,9 +1,21 @@
 import styled from 'styled-components';
 
 export const MenuBar = styled.div`
-  height: 2rem;
   width: 100vw;
-  outline: 1px solid var(--border);
+  overflow-x: scroll;
+  ::-webkit-scrollbar {
+    height: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--bg-2);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border);
+  }
+`;
+export const Tools = styled.div`
+  height: 2rem;
+  width: 59rem;
   display: flex;
   justify-content: center;
   background-color: var(--bg-2);
@@ -11,19 +23,32 @@ export const MenuBar = styled.div`
 `;
 export const Button = styled.button`
   height: 2rem;
-  width: 2rem;
-  padding: 0.4rem;
-  position: relative;
-  color: var(--txt-2);
+  color: ${(props) => (props.color ? props.color : 'var(--txt-2)')};
   transition: background-color 200ms;
-  background-color: ${(props: { isActive: boolean }) => props.isActive ? 'var(--bg-3)' : 'none'};
+  background-color: ${(props) => props.bg};
   border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
   cursor: pointer;
   &:hover {
     background-color: var(--bg-3);
   }
 `;
+export const ButtonIcon = styled.div`
+  height: 2rem;
+  width: 2rem;
+  padding: 0.4rem;
+  position: relative;
+  color: inherit;
+`;
+export const ButtonText = styled.div`
+  padding: 0.4rem;
+  padding-right: 0.8rem;
+  color: inherit;
+`;
 export const ButtonGroup = styled.div`
+  display: flex;
   padding: 0 0.5rem;
 `;
 
@@ -51,15 +76,15 @@ export const SelectIcon = styled.div`
   height: 2rem;
   width: 1rem;
   position: absolute;
-  right: .5rem;
+  right: 0.5rem;
   top: 0;
   color: var(--txt-2);
-  transform: ${props => props.display ? 'rotate(180deg)' : '0'};
+  transform: ${(props) => (props.display ? 'rotate(180deg)' : '0')};
   transition: 200ms;
 `;
 export const Dropdown = styled.div`
   width: 10rem;
-  height: ${props => props.display ? '12rem' : '0'};
+  height: ${(props) => (props.display ? '12rem' : '0')};
   position: absolute;
   top: 2rem;
   left: -1px;
@@ -68,13 +93,13 @@ export const Dropdown = styled.div`
   justify-content: center;
   flex-direction: column;
   background-color: var(--bg-2);
-  border: ${props => props.display ? '1px solid var(--border)' : 'none'};
+  border: ${(props) => (props.display ? '1px solid var(--border)' : 'none')};
   z-index: 1000;
   transition: height 150ms;
   overflow: hidden;
 `;
 export const Option = styled.div`
-  padding: .8rem 1rem;
+  padding: 0.8rem 1rem;
   transform: background-color 200ms;
   width: 100%;
   cursor: pointer;

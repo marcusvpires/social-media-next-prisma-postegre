@@ -1,12 +1,11 @@
 import React from 'react';
 import imageCompression from 'browser-image-compression';
-
+import { Feedback, useFeedback } from '../../_design/Feedback';
 import { Editor } from '@tiptap/react';
 import { Image } from '@styled-icons/boxicons-regular';
 import * as S from './styled';
 
-const compress = async (file: File) => {
-  console.log(`Original file size: ${file.size / 1024 / 1024} MB`);
+const compress = async (file: File, setFeedback: Function) => {
   const options = {
     maxSizeMB: 1,
     maxWidthOrHeight: 1920,
@@ -14,12 +13,9 @@ const compress = async (file: File) => {
   };
   try {
     const compressedFile = await imageCompression(file, options);
-    console.log(
-      `Compressed file size: ${compressedFile.size / 1024 / 1024} MB`
-    );
     return imageCompression.getDataUrlFromFile(compressedFile);
   } catch (error) {
-    console.log(error);
+    setFeedback('Erro ao carregar a imagem', 'error')
   }
 };
 
@@ -28,11 +24,12 @@ type PropsType = {
 };
 
 const LoadImage: React.FC<PropsType> = ({ editor }) => {
+  const [ feedback, setFeedback ] = useFeedback()
   const handleFile = async (ev: any) => {
     const file = ev.target.files[0];
     if (!file) return;
     else {
-      const base64 = await compress(file);
+      const base64 = await compress(file, setFeedback);
       editor.chain().focus().setImage({ src: base64 }).run()
     }
   };
@@ -46,6 +43,7 @@ const LoadImage: React.FC<PropsType> = ({ editor }) => {
         onChange={handleFile}
       />
       <Image />
+      <Feedback feedback={feedback} />
     </S.ImgWrapper>
   );
 };

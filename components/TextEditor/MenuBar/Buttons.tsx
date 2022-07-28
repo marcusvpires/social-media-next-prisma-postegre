@@ -81,12 +81,15 @@ const Buttons = (editor: Editor): ButtonType[][] => [
       onClick: () => editor.chain().focus().toggleBlockquote().run(),
       isActive: editor.isActive('blockquote'),
     },
+    /*   
     {
       Icon: <I.Minus />,
       onClick: () => editor.chain().focus().setHorizontalRule().run(),
     },
+    */
   ],
   [
+    /*
     {
       Icon: <I.SquareRounded />,
       onClick: () => {
@@ -94,6 +97,7 @@ const Buttons = (editor: Editor): ButtonType[][] => [
         editor.chain().focus().clearNodes().run();
       },
     },
+    */
     {
       Icon: <I.Undo />,
       onClick: () => editor.chain().focus().undo().run(),
