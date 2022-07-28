@@ -15,7 +15,7 @@ const Header: React.FC = () => {
             <S.LogoIcon>
               <Layer />
             </S.LogoIcon>
-            <S.LogoLabel>Mooncacke</S.LogoLabel>
+            <S.LogoLabel>Rede social</S.LogoLabel>
           </S.Logo>
         </Link>
 
