@@ -1,4 +1,7 @@
 # Social media with rich text editor
+
+![Preview](public/preview.png)
+
 ## Next js, Prisma, PostegreSQL 
 
 ### Funcionalidades
@@ -14,6 +17,7 @@
 - PostegreSQL
 - Next auth
 - styled-components (styled-icons)
+
 
 # Clonar
 Meu pc tem o Node js na versão v14.18.1 e o Postegres na versão 11.16, tambêm é possível rodar direto no Heroku --> [Configurar um banco de dados PostgreSQL gratuito no Heroku](https://dev.to/prisma/how-to-setup-a-free-postgresql-database-on-heroku-1dc1)
