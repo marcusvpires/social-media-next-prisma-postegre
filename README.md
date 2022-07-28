@@ -4,7 +4,7 @@
 ### Funcionalidades
 - Editor de texto completo
 - Upload de imagens nos artigos com drag and drop
-- Dashbord dos artigos
+- Dashboard dos artigos
 - Pode funcionar como um Blog com CMS integrado
 - Autenticação com o Google
 
@@ -49,7 +49,7 @@ npx prisma generate
 - Link não pode ser adcionado no editor de texto por conta de conflitos com o Next Link
 - Imagem de Banner para cada artigo
 - Melhorar o feed
-- Dashbord para administradores com mais funcionalidades
+- Dashboard para administradores com mais funcionalidades
 - Sistema de pesquisa
 
 ## License
