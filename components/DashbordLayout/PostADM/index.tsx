@@ -84,7 +84,9 @@ const PostADM: React.FC<PropsType> = ({ post, email, setPosts, query }) => {
           <S.Image>
             <Image
               alt='Imagem de perfil'
-              src='/defaurprofile.svg'
+              src={
+                post?.author?.image ? post.author.image : '/defaurprofile.svg'
+              }
               layout='fill'
             />
           </S.Image>

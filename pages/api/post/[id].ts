@@ -80,14 +80,8 @@ const DELETE = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { id } = req.query;
     console.log(id)
-    const result = await prisma.post.update({
-      where: { id: String(id) },
-      data: {
-        published: false,
-        author: {
-          connect: { email: '@trash' }
-        }
-      }
+    const result = await prisma.post.delete({
+      where: { id: String(id) }
     });
     res.json({ ok: true, post: result });
   } catch (error) {

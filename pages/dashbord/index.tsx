@@ -9,6 +9,7 @@ import PostADM from '../../components/DashbordLayout/PostADM';
 import NotAuthorized from '../../components/NotAutorized';
 
 import * as S from '../../styles/pageStyles/dashbord';
+import Link from 'next/link';
 
 export interface IPost {
   id: string;
@@ -93,17 +94,29 @@ const Dashbord: React.FC<{ posts: IPost[]; email: string }> = (props) => {
   return (
     <DashbordLayout>
       <S.Feed>
-        <S.Content>
-          {posts.map((post) => (
-            <PostADM
-              key={post.id}
-              post={post}
-              setPosts={setPosts}
-              email={props.email}
-              query={JSON.stringify(query)}
-            />
-          ))}
-        </S.Content>
+        {posts.length ? (
+          <S.Content>
+            {posts.map((post) => (
+              <PostADM
+                key={post.id}
+                post={post}
+                setPosts={setPosts}
+                email={props.email}
+                query={JSON.stringify(query)}
+              />
+            ))}
+          </S.Content>
+        ) : (
+          <S.Empty>
+            <S.EContainer>
+              <S.ETitle>Nada aqui !</S.ETitle>
+              <S.EDescription>Crie uma nova publicação para aparecer aqui</S.EDescription>
+              <Link passHref href='/criar'>
+                <S.ELink>Criar publicação</S.ELink>
+              </Link>
+            </S.EContainer>
+          </S.Empty>
+        )}
       </S.Feed>
     </DashbordLayout>
   );
