@@ -1,6 +1,6 @@
 {
-  "name": "hello-next",
-  "version": "1.0.0",
+  "name": "social-media-next-prisma-postegre",
+  "version": "2.0.0",
   "description": "",
   "scripts": {
     "dev": "next",
@@ -16,7 +16,7 @@
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   },
   "keywords": [],
-  "author": "",
+  "author": "Marcus Vinicius <marcusvpires>",
   "license": "MIT",
   "dependencies": {
     "@next-auth/prisma-adapter": "^1.0.3",
